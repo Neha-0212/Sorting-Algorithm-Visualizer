@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/font-awesome.css">
+    <link rel="stylesheet" href="styles/new.css">
+</head>
+<body> <!-- header start -->
+    <header class="header">
+        <div class="container">
+            <div class="row v-center">
+                <div class="header-item item-left">
+                    <div class="logo">
+                        <a href="#">Sort</a>
+                    </div>
+                </div>
+                <!-- menu start here -->
+                <div class="header-item item-center">
+                    <div class="menu-overlay">
+                    </div>
+                    <nav class="menu">
+                        <div class="mobile-menu-head">
+                            <div class="go-back"><i class="fa fa-angle-left"></i></div>
+                            <div class="current-menu-title"></div>
+                            <div class="mobile-menu-close">&times;</div>
+                        </div>
+                        <ul class="menu-main">
+                            <li>
+                                <a href="index.html">Home</a>
+                            </li>
+                            
+                           <li class="menu-item-has-children">
+                                <a href="#">Simple comparison-Based <i class="fas fa-angle-down"></i></a>
+                                <div class="sub-menu single-column-menu">
+                                    <ul>
+                                        <li><a href="bubble.html">Bubble sort</a></li>
+                                        <li><a href="insetion.html">Insertion sort	</a></li>
+                                        <li><a href="selection.html"> Selection sort</a></li>
+                                    </ul>
+                                </div>
+                           </li>
+                           <li class="menu-item-has-children">
+                                <a href="#">Efficient  comparison-Based <i class="fas fa-angle-down"></i></a>
+                                <div class="sub-menu single-column-menu">
+                                    <ul>
+                                        <li><a href="quick.html">Quick  sort</a></li>
+                                        <li><a href="merge.html">Merge  sort	</a></li>
+                                        <li><a href="heap.html">Heap  sort</a></li>
+                                    </ul>
+                                </div>
+                           </li>
+                           <li class="menu-item-has-children">
+                                <a href="#">Integer Sorting <i class="fas fa-angle-down"></i></a>
+                                <div class="sub-menu single-column-menu">
+                                    <ul>
+                                        <li><a href="radix.html">Radix  sort</a></li>
+                                        <li><a href="counting.html">Counting  sort	</a></li>
+                                    </ul>
+                                </div>
+                           </li>
+   
+                            <li class="menu-item-has-children">
+                                <a href="#">Distribution Sort <i class="fas fa-angle-down"></i></a>
+                                <div class="sub-menu single-column-menu">
+                                    <ul>
+                                        <li><a href="bucket.html">Bucket Sort</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="comparison.html">comparison Sort</a>
+                            </li><li>
+                                <a href="try.html">Your Sort</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <!-- menu end here -->
+                <div class="header-item item-right">
+                    <!-- mobile menu trigger -->
+                    <div class="mobile-menu-trigger">
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header end -->
+    <section class = "services containers">
+        <div class = "service-title">
+          <h2>Merge Sort</h2>
+            <div>
+            <h2>Merge Sort</h2>
+            </div>
+        </div>
+        <p class="text">Merge Sort is a sorting algorithm that employs a divide-and-conquer strategy to sort a list of elements. It begins by dividing the input list into smaller sublists until each sublist contains only one element. Then, it merges these smaller sublists in a sorted manner, gradually building up the sorted list. </p>
+        <p class="text">Merge Sort is efficient with a time complexity of O(n log n) and is known for its stability, ensuring that the relative order of equal elements remains unchanged after sorting. This algorithm is widely used in practice due to its scalability and versatility, making it suitable for sorting both arrays and linked lists.</p>
+
+        <div>
+            <div id="box">
+                <section class = "services containers">
+                    <div class = "service-title">
+                      <h2>Visualizer</h2>
+                        <div>
+                        <h2>Visualizer</h2>
+                        </div>
+                    </div>
+                    <p class="text" style="display: flex; flex-direction: column;">
+                        <strong style="color: blue;"> Blue </strong> represents Selection of bar 
+                        <strong style="color: red;"> Red </strong> represents Swapping of bar 
+                    </p>
+                </section>
+                <div style="float: right; white-space: nowrap;">
+                    <button class="sort-btns" id="shuffleBtn"><i class="fas fa-random"></i></button>
+                    <button class="sort-btns" id="soundBtn"><i class="fas fa-volume-up"></i></button>
+                    <button class="sort-btns" id="sortBtn"><i class="fas fa-play"></i></button>
+                    <div class="slider-container">
+                        <input type="range" value="25" min="10" max="100" name="slider" id="numBarsSlider">
+                        <span id="numBarsValue"></span>
+                    </div>
+                </div>
+        
+                <div style="clear: both; padding-top: 20px;">
+                    
+                <div>
+                    <div id="sort-container"></div>
+                </div>        
+            </div>
+        </div>
+
+        <div class = "row">
+            <div class = "item">
+                <span><i class="fa-solid fa-brain"></i></span>
+                <h2>Algorithm</h2>
+                <p class="text">
+                    <strong>Step I : </strong> If the list has only one element, it is already sorted. Return the list.
+                    <br>
+                    <strong>Step II : </strong> Split the list into two halves.
+                    <br>
+                    <strong>Step III : </strong> Recursively sort each half.
+                    <br>
+                    <strong>Step IV : </strong> Merge the two sorted halves to produce the final sorted list.
+                </p>
+              </div>
+      
+              <div class = "item">
+                <span><i class="fa-solid fa-question"></i></span>
+                <h2>When To Use</h2>
+                <p class="text">
+                    When efficiency is crucial for sorting large datasets.
+                    <br>
+                    When maintaining stability in sorting order is necessary.
+                    <br>
+                    When additional memory usage is not a concern.
+                </p>
+              </div>
+      
+              <div class = "item">
+                <span><i class = "fa-solid fa-clock"></i></span>
+                <h2>Time & Space Complex</h2>
+                <div class="col">
+                    <div class="box-table">
+                        <div class="content-box">
+                            <!-- <br> -->
+                            <table>
+                                <tr>
+                                    <th>Case</th>
+                                    <th>Complexity</th>
+                                </tr>
+                                <tr>
+                                    <th>Best Case (Ω)</th>
+                                    <td>O(nlogn)</td>
+                                </tr>
+                                <tr>
+                                    <th>Average Case (Θ) </th>
+                                    <td>O(nlogn)</td>
+                                </tr>
+                                <tr>
+                                    <th>Worst Case (O)</th>
+                                    <td>O(nlogn)</td>
+                                </tr>
+                                <tr>
+                                    <th>Space</th>
+                                    <td>O(n)</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+              </div>
+    </section>
+    <section class="services containers">
+        <div class="service-title">
+            <h2>Code</h2>
+            <div>
+            <h2>Code</h2>
+            </div>
+        </div>
+    </section>
+        <div class="code-box">
+        <div class="code-cont">
+          <div class="code-btn">
+            <button onclick="showPythonCode()"><i class="fa-brands fa-python"></i></button>
+            <button onclick="showCCode()"><i class="fas fa-c"></i></button>
+            <button onclick="showCPPCode()"><i class="fas fa-C">Cpp</i></button>
+            <button onclick="showJSCode()"><i class="fa-brands fa-js"></i></button>
+            <button onclick="showJavaCode()"><i class="fa-brands fa-java"></i></button>
+          </div>
+          <div class="code-content">
+            <pre class="code" id="python-code" style="display:block;">
+                def mergeSort(arr):
+                if len(arr) > 1:
+                    # Finding the mid of the array
+                    mid = len(arr) // 2
+
+                    # Dividing the array elements into 2 halves
+                    left_half = arr[:mid]
+                    right_half = arr[mid:]
+
+                    # Sorting both halves
+                    mergeSort(left_half)
+                    mergeSort(right_half)
+
+                    i = j = k = 0
+
+                    # Copy data to temp arrays left_half[] and right_half[]
+                    while i < len(left_half) and j < len(right_half):
+                        if left_half[i] < right_half[j]:
+                            arr[k] = left_half[i]
+                            i += 1
+                        else:
+                            arr[k] = right_half[j]
+                            j += 1
+                        k += 1
+
+                    # Checking if any element was left
+                    while i < len(left_half):
+                        arr[k] = left_half[i]
+                        i += 1
+                        k += 1
+
+                    while j < len(right_half):
+                        arr[k] = right_half[j]
+                        j += 1
+                        k += 1
+            </pre>
+            <pre class="code" id="c-code" style="display:none;">
+                #include <stdio.h>
+
+                    // Merge two subarrays of arr[]
+                    // First subarray is arr[l..m]
+                    // Second subarray is arr[m+1..r]
+                    void merge(int arr[], int l, int m, int r) {
+                        int i, j, k;
+                        int n1 = m - l + 1;
+                        int n2 = r - m;
+                    
+                        // Create temporary arrays
+                        int L[n1], R[n2];
+                    
+                        // Copy data to temporary arrays L[] and R[]
+                        for (i = 0; i < n1; i++)
+                            L[i] = arr[l + i];
+                        for (j = 0; j < n2; j++)
+                            R[j] = arr[m + 1 + j];
+                    
+                        // Merge the temporary arrays back into arr[l..r]
+                        i = 0; // Initial index of first subarray
+                        j = 0; // Initial index of second subarray
+                        k = l; // Initial index of merged subarray
+                        while (i < n1 && j < n2) {
+                            if (L[i] <= R[j]) {
+                                arr[k] = L[i];
+                                i++;
+                            } else {
+                                arr[k] = R[j];
+                                j++;
+                            }
+                            k++;
+                        }
+                    
+                        // Copy the remaining elements of L[], if there are any
+                        while (i < n1) {
+                            arr[k] = L[i];
+                            i++;
+                            k++;
+                        }
+                    
+                        // Copy the remaining elements of R[], if there are any
+                        while (j < n2) {
+                            arr[k] = R[j];
+                            j++;
+                            k++;
+                        }
+                    }
+                    
+                    // Merge sort function
+                    void mergeSort(int arr[], int l, int r) {
+                        if (l < r) {
+                            // Same as (l+r)/2, but avoids overflow for large l and r
+                            int m = l + (r - l) / 2;
+                    
+                            // Sort first and second halves
+                            mergeSort(arr, l, m);
+                            mergeSort(arr, m + 1, r);
+                    
+                            // Merge the sorted halves
+                            merge(arr, l, m, r);
+                        }
+                    }
+            </pre>
+            <pre class="code" id="cpp-code" style="display:none;">
+                #include <iostream>
+                    #include <vector>
+                    
+                    using namespace std;
+                    
+                    // Merge two subarrays of arr[]
+                    // First subarray is arr[l..m]
+                    // Second subarray is arr[m+1..r]
+                    void merge(vector<int>& arr, int l, int m, int r) {
+                        int n1 = m - l + 1;
+                        int n2 = r - m;
+                    
+                        // Create temporary arrays
+                        vector<int> L(n1), R(n2);
+                    
+                        // Copy data to temporary arrays L[] and R[]
+                        for (int i = 0; i < n1; ++i)
+                            L[i] = arr[l + i];
+                        for (int j = 0; j < n2; ++j)
+                            R[j] = arr[m + 1 + j];
+                    
+                        // Merge the temporary arrays back into arr[l..r]
+                        int i = 0, j = 0, k = l;
+                        while (i < n1 && j < n2) {
+                            if (L[i] <= R[j]) {
+                                arr[k] = L[i];
+                                ++i;
+                            } else {
+                                arr[k] = R[j];
+                                ++j;
+                            }
+                            ++k;
+                        }
+                    
+                        // Copy the remaining elements of L[], if there are any
+                        while (i < n1) {
+                            arr[k] = L[i];
+                            ++i;
+                            ++k;
+                        }
+                    
+                        // Copy the remaining elements of R[], if there are any
+                        while (j < n2) {
+                            arr[k] = R[j];
+                            ++j;
+                            ++k;
+                        }
+                    }
+                    
+                    // Merge sort function
+                    void mergeSort(vector<int>& arr, int l, int r) {
+                        if (l < r) {
+                            // Same as (l+r)/2, but avoids overflow for large l and r
+                            int m = l + (r - l) / 2;
+                    
+                            // Sort first and second halves
+                            mergeSort(arr, l, m);
+                            mergeSort(arr, m + 1, r);
+                    
+                            // Merge the sorted halves
+                            merge(arr, l, m, r);
+                        }
+                    } 
+            </pre>
+            <pre class="code" id="js-code">
+                // Merge two sorted subarrays arr[l..m] and arr[m+1..r]
+                function merge(arr, l, m, r) {
+                    let n1 = m - l + 1;
+                    let n2 = r - m;
+
+                    // Create temporary arrays
+                    let L = new Array(n1);
+                    let R = new Array(n2);
+
+                    // Copy data to temporary arrays L[] and R[]
+                    for (let i = 0; i < n1; i++)
+                        L[i] = arr[l + i];
+                    for (let j = 0; j < n2; j++)
+                        R[j] = arr[m + 1 + j];
+
+                    // Merge the temporary arrays back into arr[l..r]
+                    let i = 0, j = 0, k = l;
+                    while (i < n1 && j < n2) {
+                        if (L[i] <= R[j]) {
+                            arr[k] = L[i];
+                            i++;
+                        } else {
+                            arr[k] = R[j];
+                            j++;
+                        }
+                        k++;
+                    }
+
+                    // Copy the remaining elements of L[], if there are any
+                    while (i < n1) {
+                        arr[k] = L[i];
+                        i++;
+                        k++;
+                    }
+
+                    // Copy the remaining elements of R[], if there are any
+                    while (j < n2) {
+                        arr[k] = R[j];
+                        j++;
+                        k++;
+                    }
+                }
+
+                // Main function that sorts arr[l..r] using merge()
+                function mergeSort(arr, l, r) {
+                    if (l < r) {
+                        // Same as (l+r)/2, but avoids overflow for large l and r
+                        let m = Math.floor(l + (r - l) / 2);
+
+                        // Sort first and second halves
+                        mergeSort(arr, l, m);
+                        mergeSort(arr, m + 1, r);
+
+                        // Merge the sorted halves
+                        merge(arr, l, m, r);
+                    }
+                }
+            </pre>
+            <pre class="code" id="java-code" style="display:none;">
+                public class MergeSort {
+
+                    // Merge two subarrays of arr[]
+                    // First subarray is arr[l..m]
+                    // Second subarray is arr[m+1..r]
+                    void merge(int arr[], int l, int m, int r) {
+                        int n1 = m - l + 1;
+                        int n2 = r - m;
+
+                        // Create temporary arrays
+                        int L[] = new int[n1];
+                        int R[] = new int[n2];
+
+                        // Copy data to temporary arrays L[] and R[]
+                        for (int i = 0; i < n1; ++i)
+                            L[i] = arr[l + i];
+                        for (int j = 0; j < n2; ++j)
+                            R[j] = arr[m + 1 + j];
+
+                        // Merge the temporary arrays back into arr[l..r]
+                        int i = 0, j = 0;
+                        int k = l;
+                        while (i < n1 && j < n2) {
+                            if (L[i] <= R[j]) {
+                                arr[k] = L[i];
+                                i++;
+                            } else {
+                                arr[k] = R[j];
+                                j++;
+                            }
+                            k++;
+                        }
+
+                        // Copy the remaining elements of L[], if there are any
+                        while (i < n1) {
+                            arr[k] = L[i];
+                            i++;
+                            k++;
+                        }
+
+                        // Copy the remaining elements of R[], if there are any
+                        while (j < n2) {
+                            arr[k] = R[j];
+                            j++;
+                            k++;
+                        }
+                    }
+
+                    // Main function that sorts arr[l..r] using merge()
+                    void mergeSort(int arr[], int l, int r) {
+                        if (l < r) {
+                            // Same as (l+r)/2, but avoids overflow for large l and r
+                            int m = (l + r) / 2;
+
+                            // Sort first and second halves
+                            mergeSort(arr, l, m);
+                            mergeSort(arr, m + 1, r);
+
+                            // Merge the sorted halves
+                            merge(arr, l, m, r);
+                        }
+                    }
+                }
+            </pre>
+          </div>
+        </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <h3>Contact Me</h3>
+                <p>Email:nehaakanaki0218@gmail.com</p>
+                <p>Phone: +91 7414976087</p>
+            </div>
+            <div class="footer-content">
+                <h3>View To Know More</h3>
+                <ul class="list">
+                    <li><a href=""><i class="fab fa-linkedin"></i></a></li>
+                    <li><a href=""><i class="fab fa-facebook"></i></a></li>
+                    <li><a href=""><i class="fab fa-github"></i></a></li>
+                    <li><a href=""><i class="fab fa-instagram"></i></a></li>
+                    <li><a href=""><i class="fab fa-twitter"></i></a></li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bar">
+            <p>&copy: 2023 your company. Learn with me.</p>
+        </div>
+    </footer>
+
+    <script src="script/merge.js"></script>
+</body>
+</html>

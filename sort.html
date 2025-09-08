@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/font-awesome.css">
+    <link rel="stylesheet" href="styles/new.css">
+</head>
+<body> <!-- header start -->
+    <header class="header">
+        <div class="container">
+            <div class="row v-center">
+                <div class="header-item item-left">
+                    <div class="logo">
+                        <a href="#">Sort</a>
+                    </div>
+                </div>
+                <!-- menu start here -->
+                <div class="header-item item-center">
+                    <div class="menu-overlay">
+                    </div>
+                    <nav class="menu">
+                        <div class="mobile-menu-head">
+                            <div class="go-back"><i class="fa fa-angle-left"></i></div>
+                            <div class="current-menu-title"></div>
+                            <div class="mobile-menu-close">&times;</div>
+                        </div>
+                        <ul class="menu-main">
+                            <li>
+                                <a href="index.html">Home</a>
+                            </li>
+                            
+                           <li class="menu-item-has-children">
+                                <a href="#">Simple comparison-Based <i class="fas fa-angle-down"></i></a>
+                                <div class="sub-menu single-column-menu">
+                                    <ul>
+                                        <li><a href="bubble.html">Bubble sort</a></li>
+                                        <li><a href="insetion.html">Insertion sort	</a></li>
+                                        <li><a href="selection.html"> Selection sort</a></li>
+                                    </ul>
+                                </div>
+                           </li>
+                           <li class="menu-item-has-children">
+                                <a href="#">Efficient  comparison-Based <i class="fas fa-angle-down"></i></a>
+                                <div class="sub-menu single-column-menu">
+                                    <ul>
+                                        <li><a href="quick.html">Quick  sort</a></li>
+                                        <li><a href="merge.html">Merge  sort	</a></li>
+                                        <li><a href="heap.html">Heap  sort</a></li>
+                                    </ul>
+                                </div>
+                           </li>
+                           <li class="menu-item-has-children">
+                                <a href="#">Integer Sorting <i class="fas fa-angle-down"></i></a>
+                                <div class="sub-menu single-column-menu">
+                                    <ul>
+                                        <li><a href="radix.html">Radix  sort</a></li>
+                                        <li><a href="counting.html">Counting  sort	</a></li>
+                                    </ul>
+                                </div>
+                           </li>
+   
+                            <li class="menu-item-has-children">
+                                <a href="#">Distribution Sort <i class="fas fa-angle-down"></i></a>
+                                <div class="sub-menu single-column-menu">
+                                    <ul>
+                                        <li><a href="bucket.html">Bucket Sort</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="comparison.html">comparison Sort</a>
+                            </li><li>
+                                <a href="try.html">Your Sort</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <!-- menu end here -->
+                <div class="header-item item-right">
+                    <!-- mobile menu trigger -->
+                    <div class="mobile-menu-trigger">
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>       
+    <!-- header end -->
+    <section class = "services containers">
+        <div class = "service-title">
+          <h2>What is Sorting?</h2>
+        </div>
+         <p class = "text">
+            Sorting is a core operation in computer science, involving the arrangement of elements in a dataset according to specified criteria. It aims to impose a structured order on the data, facilitating efficient searching, retrieval, and analysis. Sorting algorithms are fundamental tools used to automate this process, ensuring that elements are arranged in the desired order, whether ascending or descending, based on numerical, alphabetical, or other criteria relevant to the problem at hand.
+        </p>
+         <p class = "text">
+            Asymptotic notations, primarily represented by symbols like O, Θ, and Ω, depict the complexities of algorithms. These symbols correspond to the upper bound, tight bound, and lower bound of an algorithm's complexity, respectively. They encapsulate expressions in terms of 'n', denoting the number of elements in the data structure.
+        </p>
+         <p class = "text">
+            These algorithms range from comparison-based methods like bubble sort and quicksort to non-comparison-based approaches such as radix sort. Each algorithm is tailored to handle different data characteristics and computational requirements, contributing to the efficiency and effectiveness of sorting operations in various applications across diverse domains.
+        </p>
+         <p class = "text">
+            Space and time complexity analysis can be broken down into three different cases : 
+            <div class="text casestable">
+                <ul style="list-style-type: disc;">
+                    <li>Best Case - (Ω) notation</li>
+                    <li>Average Case - (Θ) notation</li>
+                    <li>Worst Case - (O) notation</li>
+                </ul>
+            </div>
+        </p>
+        
+        <p class="text">
+            Simple sorting algorithms are characterized by their straightforward implementation and ease of understanding. They typically involve basic operations such as comparing and swapping elements. While they are easy to implement, they tend to have poorer performance compared to more sophisticated algorithms, especially for large datasets.
+        </p>
+        <p class="text">
+            Efficient sorting algorithms are designed to have better performance, especially for larger datasets. They typically employ more advanced techniques such as divide and conquer or heap-based operations to achieve faster sorting times. These algorithms are commonly used in production environments and real-world applications where performance is critical.
+        </p>
+        <p class="text">
+            Integer sorting algorithms are specifically optimized for sorting integer values. They often take advantage of the fact that the range of possible integer values is known or limited, allowing for more efficient sorting techniques. These algorithms can achieve better performance than general-purpose sorting algorithms when sorting integers.
+        </p>
+        <p class="text">
+            Distribution-based sorting algorithms distribute elements into separate buckets or partitions based on certain properties of the data. These algorithms often leverage the distribution of data to achieve efficient sorting. They can be particularly useful when the input data has a specific distribution pattern or when the range of possible values is known in advance.
+        </p>
+    </section>
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <h3>Contact Me</h3>
+                <p>Email:nehaakanaki0218@gmail.com</p>
+                <p>Phone: +91 7414976087</p>
+            </div>
+            <div class="footer-content">
+                <h3>View To Know More</h3>
+                <ul class="list">
+                    <li><a href=""><i class="fab fa-linkedin"></i></a></li>
+                    <li><a href=""><i class="fab fa-facebook"></i></a></li>
+                    <li><a href=""><i class="fab fa-github"></i></a></li>
+                    <li><a href=""><i class="fab fa-instagram"></i></a></li>
+                    <li><a href=""><i class="fab fa-twitter"></i></a></li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bar">
+            <p>&copy: 2023 your company. Learn with me.</p>
+        </div>
+    </footer>
+
+    <script src="script/bubble.js"></script>
+</body>
+</html>

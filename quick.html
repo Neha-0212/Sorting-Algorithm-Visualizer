@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/font-awesome.css">
+    <link rel="stylesheet" href="styles/new.css">
+</head>
+<body> <!-- header start -->
+    <header class="header">
+        <div class="container">
+            <div class="row v-center">
+                <div class="header-item item-left">
+                    <div class="logo">
+                        <a href="#">Sort</a>
+                    </div>
+                </div>
+                <!-- menu start here -->
+                <div class="header-item item-center">
+                    <div class="menu-overlay">
+                    </div>
+                    <nav class="menu">
+                        <div class="mobile-menu-head">
+                            <div class="go-back"><i class="fa fa-angle-left"></i></div>
+                            <div class="current-menu-title"></div>
+                            <div class="mobile-menu-close">&times;</div>
+                        </div>
+                        <ul class="menu-main">
+                            <li>
+                                <a href="index.html">Home</a>
+                            </li>
+                            
+                           <li class="menu-item-has-children">
+                                <a href="#">Simple comparison-Based <i class="fas fa-angle-down"></i></a>
+                                <div class="sub-menu single-column-menu">
+                                    <ul>
+                                        <li><a href="bubble.html">Bubble sort</a></li>
+                                        <li><a href="insetion.html">Insertion sort	</a></li>
+                                        <li><a href="selection.html"> Selection sort</a></li>
+                                    </ul>
+                                </div>
+                           </li>
+                           <li class="menu-item-has-children">
+                                <a href="#">Efficient  comparison-Based <i class="fas fa-angle-down"></i></a>
+                                <div class="sub-menu single-column-menu">
+                                    <ul>
+                                        <li><a href="quick.html">Quick  sort</a></li>
+                                        <li><a href="merge.html">Merge  sort	</a></li>
+                                        <li><a href="heap.html">Heap  sort</a></li>
+                                    </ul>
+                                </div>
+                           </li>
+                           <li class="menu-item-has-children">
+                                <a href="#">Integer Sorting <i class="fas fa-angle-down"></i></a>
+                                <div class="sub-menu single-column-menu">
+                                    <ul>
+                                        <li><a href="radix.html">Radix  sort</a></li>
+                                        <li><a href="counting.html">Counting  sort	</a></li>
+                                    </ul>
+                                </div>
+                           </li>
+   
+                            <li class="menu-item-has-children">
+                                <a href="#">Distribution Sort <i class="fas fa-angle-down"></i></a>
+                                <div class="sub-menu single-column-menu">
+                                    <ul>
+                                        <li><a href="bucket.html">Bucket Sort</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="comparison.html">comparison Sort</a>
+                            </li><li>
+                                <a href="try.html">Your Sort</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <!-- menu end here -->
+                <div class="header-item item-right">
+                    <!-- mobile menu trigger -->
+                    <div class="mobile-menu-trigger">
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header end -->
+    <section class = "services containers">
+        <div class = "service-title">
+          <h2>quick Sort</h2>
+            <div>
+            <h2>quick Sort</h2>
+            </div>
+        </div>
+        <p class="text">Quick Sort is a sorting algorithm that efficiently sorts elements by recursively partitioning an array into smaller subarrays based on a chosen pivot element.It selects a pivot, rearranges the elements so that those less than the pivot are on its left and those greater are on its right, and repeats this process for each subarray until the entire array is sorted. </p>
+        <p class="text">Quick Sort typically exhibits an average-case time complexity of O(n log n), making it highly efficient for sorting large datasets. Its in-place sorting nature, requiring minimal additional memory beyond the input array, further enhances its suitability for various applications.</p>
+        
+        <div>
+            <div id="box">
+                <section class = "services containers">
+                    <div class = "service-title">
+                      <h2>Visualizer</h2>
+                        <div>
+                        <h2>Visualizer</h2>
+                        </div>
+                    </div>
+                    <p class="text" style="display: flex; flex-direction: column;">
+                        <strong style="color: blue;"> Blue </strong> represents Selection of bar 
+                        <strong style="color: red;"> Red </strong> represents Swapping of bar 
+                    </p>
+                </section>
+                <div style="float: right; white-space: nowrap;">
+                    <button class="sort-btns" id="shuffleBtn"><i class="fas fa-random"></i></button>
+                    <button class="sort-btns" id="soundBtn"><i class="fas fa-volume-up"></i></button>
+                    <button class="sort-btns" id="sortBtn"><i class="fas fa-play"></i></button>
+                    <div class="slider-container">
+                        <div style="color: #72b626;"><strong>Elements : </strong><span id="numBarsValue"></span></div>
+                        <input type="range" value="25" min="10" max="100" name="slider" id="numBarsSlider">
+                    </div>
+                </div>
+                                    
+                <div>
+                    <div id="sort-container"></div>
+                </div>        
+            </div>
+        </div>
+
+        <div class = "row">
+            <div class = "item">
+                <span><i class="fa-solid fa-brain"></i></span>
+                <h2>Algorithm</h2>
+                <p class="text">
+                    <strong>Step I : </strong> Choose a pivot element from the list.
+                    <br>
+                    <strong>Step II : </strong> Partition the list into two groups: elements less than the pivot and elements greater than the pivot.
+                    <br>
+                    <strong>Step III : </strong> Recursively sort the two groups.
+                    <br>
+                    <strong>Step IV : </strong> Combine the sorted groups and the pivot element to produce the final sorted list.
+                </p>
+              </div>
+      
+              <div class = "item">
+                <span><i class="fa-solid fa-question"></i></span>
+                <h2>When To Use</h2>
+                <p class="text">
+                    When prioritizing efficiency, especially for sorting large datasets.
+                    <br>
+                    When stability in sorting order is not crucial.
+                    <br>
+                    When additional memory usage is not a significant concern.
+                </p>
+              </div>
+      
+              <div class = "item">
+                <span><i class = "fa-solid fa-clock"></i></span>
+                <h2>Time & Space Complex</h2>
+                <div class="col">
+                    <div class="box-table">
+                        <div class="content-box">
+                            <!-- <br> -->
+                            <table>
+                                <tr>
+                                    <th>Case</th>
+                                    <th>Complexity</th>
+                                </tr>
+                                <tr>
+                                    <th>Best Case (Ω)</th>
+                                    <td>O(nlogn)</td>
+                                </tr>
+                                <tr>
+                                    <th>Average Case (Θ) </th>
+                                    <td>O(nlogn)</td>
+                                </tr>
+                                <tr>
+                                    <th>Worst Case (O)</th>
+                                    <td>O(n<sup>2</sup>)</td>
+                                </tr>
+                                <tr>
+                                    <th>Space</th>
+                                    <td>O(nlogn)</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+              </div>
+    </section>
+    <section class="services containers">
+        <div class="service-title">
+            <h2>Code</h2>
+            <div>
+            <h2>Code</h2>
+            </div>
+        </div>
+    </section>
+        <div class="code-box">
+        <div class="code-cont">
+          <div class="code-btn">
+            <button onclick="showPythonCode()"><i class="fa-brands fa-python"></i></button>
+            <button onclick="showCCode()"><i class="fas fa-c"></i></button>
+            <button onclick="showCPPCode()"><i class="fas fa-C">Cpp</i></button>
+            <button onclick="showJSCode()"><i class="fa-brands fa-js"></i></button>
+            <button onclick="showJavaCode()"><i class="fa-brands fa-java"></i></button>
+          </div>
+          <div class="code-content">
+            <pre class="code" id="python-code" style="display:block;">
+                def partition(arr, low, high):
+                    pivot = arr[high]
+                    i = low - 1
+
+                    for j in range(low, high):
+                        if arr[j] <= pivot:
+                            i += 1
+                            arr[i], arr[j] = arr[j], arr[i]
+
+                    arr[i + 1], arr[high] = arr[high], arr[i + 1]
+                    return i + 1
+
+                def quickSort(arr, low, high):
+                    if low < high:
+                        pi = partition(arr, low, high)
+
+                        quickSort(arr, low, pi - 1)
+                        quickSort(arr, pi + 1, high)
+            </pre>
+            <pre class="code" id="c-code" style="display:none;">
+                    // Function to swap two elements
+                    void swap(int* a, int* b) {
+                        int temp = *a;
+                        *a = *b;
+                        *b = temp;
+                    }
+                    
+                    // Function to partition the array and return the pivot index
+                    int partition(int arr[], int low, int high) {
+                        int pivot = arr[high];  // Choose the last element as pivot
+                        int i = low - 1;  // Index of the smaller element
+                    
+                        for (int j = low; j < high; j++) {
+                            // If current element is smaller than or equal to pivot
+                            if (arr[j] <= pivot) {
+                                i++;  // Increment index of smaller element
+                                swap(&arr[i], &arr[j]);
+                            }
+                        }
+                        swap(&arr[i + 1], &arr[high]);
+                        return i + 1;
+                    }
+                    
+                    // Function to implement Quick Sort
+                    void quickSort(int arr[], int low, int high) {
+                        if (low < high) {
+                            // pi is partitioning index, arr[pi] is now at right place
+                            int pi = partition(arr, low, high);
+                    
+                            // Separately sort elements before and after partition
+                            quickSort(arr, low, pi - 1);
+                            quickSort(arr, pi + 1, high);
+                        }
+                    }
+            </pre>
+            <pre class="code" id="cpp-code" style="display:none;">
+                    using namespace std;
+                    
+                    // Function to swap two elements
+                    void swap(int& a, int& b) {
+                        int temp = a;
+                        a = b;
+                        b = temp;
+                    }
+                    
+                    // Function to partition the array and return the pivot index
+                    int partition(vector<int>& arr, int low, int high) {
+                        int pivot = arr[high]; // Choose the last element as pivot
+                        int i = low - 1; // Index of the smaller element
+                    
+                        for (int j = low; j < high; j++) {
+                            // If current element is smaller than or equal to pivot
+                            if (arr[j] <= pivot) {
+                                i++; // Increment index of smaller element
+                                swap(arr[i], arr[j]);
+                            }
+                        }
+                        swap(arr[i + 1], arr[high]);
+                        return i + 1;
+                    }
+                    
+                    // Function to implement Quick Sort
+                    void quickSort(vector<int>& arr, int low, int high) {
+                        if (low < high) {
+                            // pi is partitioning index, arr[pi] is now at right place
+                            int pi = partition(arr, low, high);
+                    
+                            // Separately sort elements before and after partition
+                            quickSort(arr, low, pi - 1);
+                            quickSort(arr, pi + 1, high);
+                        }
+                    }
+            </pre>
+            <pre class="code" id="js-code">
+                // Function to swap two elements
+                function swap(arr, i, j) {
+                    const temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+                }
+
+                // Function to partition the array and return the pivot index
+                function partition(arr, low, high) {
+                    const pivot = arr[high]; // Choose the last element as pivot
+                    let i = low - 1; // Index of the smaller element
+
+                    for (let j = low; j < high; j++) {
+                        // If current element is smaller than or equal to pivot
+                        if (arr[j] <= pivot) {
+                            i++; // Increment index of smaller element
+                            swap(arr, i, j);
+                        }
+                    }
+                    swap(arr, i + 1, high);
+                    return i + 1;
+                }
+
+                // Function to implement Quick Sort
+                function quickSort(arr, low, high) {
+                    if (low < high) {
+                        // pi is partitioning index, arr[pi] is now at right place
+                        const pi = partition(arr, low, high);
+
+                        // Separately sort elements before and after partition
+                        quickSort(arr, low, pi - 1);
+                        quickSort(arr, pi + 1, high);
+                    }
+                }
+            </pre>
+            <pre class="code" id="java-code" style="display:none;">
+                public class QuickSort {
+
+                    // Function to swap two elements
+                    static void swap(int[] arr, int i, int j) {
+                        int temp = arr[i];
+                        arr[i] = arr[j];
+                        arr[j] = temp;
+                    }
+
+                    // Function to partition the array and return the pivot index
+                    static int partition(int[] arr, int low, int high) {
+                        int pivot = arr[high]; // Choose the last element as pivot
+                        int i = low - 1; // Index of the smaller element
+
+                        for (int j = low; j < high; j++) {
+                            // If current element is smaller than or equal to pivot
+                            if (arr[j] <= pivot) {
+                                i++; // Increment index of smaller element
+                                swap(arr, i, j);
+                            }
+                        }
+                        swap(arr, i + 1, high);
+                        return i + 1;
+                    }
+
+                    // Function to implement Quick Sort
+                    static void quickSort(int[] arr, int low, int high) {
+                        if (low < high) {
+                            // pi is partitioning index, arr[pi] is now at right place
+                            int pi = partition(arr, low, high);
+
+                            // Separately sort elements before and after partition
+                            quickSort(arr, low, pi - 1);
+                            quickSort(arr, pi + 1, high);
+                        }
+                    }
+                }
+            </pre>
+          </div>
+        </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <h3>Contact Me</h3>
+                <p>Email:nehaakanaki0218@gmail.com</p>
+                <p>Phone: +91 XXXXX XXXXX</p>
+            </div>
+            <div class="footer-content">
+                <h3>View To Know More</h3>
+                <ul class="list">
+                    <li><a href=""><i class="fab fa-linkedin"></i></a></li>
+                    <li><a href=""><i class="fab fa-facebook"></i></a></li>
+                    <li><a href=""><i class="fab fa-github"></i></a></li>
+                    <li><a href=""><i class="fab fa-instagram"></i></a></li>
+                    <li><a href=""><i class="fab fa-twitter"></i></a></li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bar">
+            <p>&copy: 2024. Learn with me.</p>
+        </div>
+    </footer>
+
+    <script src="script/quick.js"></script>
+</body>
+</html>

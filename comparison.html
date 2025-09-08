@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Sorting Algorithm Visualizer - Complete</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+        :root {
+            --poppins: 'Poppins', sans-serif;
+            --sans: 'Open Sans', sans-serif;
+            --green: #72b626;
+            --black: #111;
+            --nero: #252525;
+            --transition: all 0.25s ease;
+            --compare-color: #2b6eff; /* blue */
+            --swap-color: #e03a3a;    /* red */
+            --sorted-color: #000000;  /* black */
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: var(--sans); }
+
+        body {
+            background: var(--black);
+            color: #fff;
+            padding: 24px;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        .header { text-align: center; margin-bottom: 20px; }
+        .header h1 { color: var(--green); font-size: 28px; margin-bottom: 6px; }
+        .header p { color: #cfcfcf; font-size: 14px; }
+
+        .controls {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            justify-content: space-between;
+            margin: 18px 0;
+            flex-wrap: wrap;
+        }
+
+        .left-controls { display: flex; gap: 10px; align-items: center; }
+        .btn {
+            background: var(--green);
+            border: none;
+            color: var(--black);
+            font-weight: 700;
+            padding: 10px 14px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+        .slider-container { display:flex; gap:8px; align-items:center; color:#d6d6d6; }
+        #speedSlider { width: 180px; }
+
+        .visualization-grid {
+            background: transparent;
+            border-radius: 6px;
+            overflow: visible;
+        }
+
+        /* grid header */
+        .grid-header {
+            display: grid;
+            grid-template-columns: 120px repeat(9, 1fr);
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+        .grid-header > div {
+            background: var(--nero);
+            padding: 12px 8px;
+            border-radius: 6px;
+            text-align: center;
+            color: #d3d3d3;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        /* rows */
+        .data-row { display: grid; grid-template-columns: 120px repeat(9, 1fr); gap: 8px; margin-bottom: 8px; align-items: stretch; }
+        .row-label {
+            background: var(--nero);
+            padding: 12px;
+            border-radius: 6px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-weight:600;
+            color:#d3d3d3;
+        }
+
+        .visualization-cell {
+            background: var(--nero);
+            min-height: 150px;
+            border-radius: 6px;
+            position: relative;
+            padding: 8px;
+            display:flex;
+            flex-direction:column;
+        }
+
+        .algorithm-title {
+            position: absolute;
+            top: 8px;
+            left: 10px;
+            font-size: 12px;
+            color: #cfcfcf;
+        }
+
+        .bar-container {
+            display:flex;
+            align-items:flex-end;
+            justify-content: space-between;
+            gap: 2px;
+            height: 100%;
+            margin-top: 28px;
+        }
+
+        .bar {
+            flex: 1 1 auto;
+            background: var(--green);
+            transition: height 160ms linear, background-color 120ms linear;
+            margin: 0 1px;
+            border-radius: 3px 3px 0 0;
+        }
+
+        .cell-btn {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.6);
+            color: var(--green);
+            border: 1px solid var(--green);
+            padding: 6px 10px;
+            font-weight:600;
+            border-radius: 4px;
+            cursor:pointer;
+        }
+        .cell-btn:disabled { opacity:0.6; cursor:not-allowed; }
+
+        .legend { display:flex; gap:18px; justify-content:center; margin-top:18px; color:#d6d6d6; flex-wrap:wrap; }
+        .legend-item { display:flex; align-items:center; gap:8px; font-size:13px; }
+        .legend-color { width:14px; height:14px; border-radius:3px; }
+
+        .legend-comparing { background: var(--compare-color); }
+        .legend-swapping { background: var(--swap-color); }
+        .legend-sorted { background: var(--sorted-color); }
+
+        /* responsive */
+        @media (max-width: 1100px) {
+            .grid-header, .data-row { grid-template-columns: 100px repeat(9, 1fr); }
+            .row-label { font-size: 13px; }
+        }
+        @media (max-width: 800px) {
+            .grid-header, .data-row { grid-template-columns: 100px repeat(5, 1fr); grid-auto-flow: row; }
+            .visualization-cell { min-height: 140px; }
+        }
+        @media (max-width: 480px) {
+            .grid-header, .data-row { grid-template-columns: 90px repeat(3, 1fr); }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Sorting Algorithm Visualizer</h1>
+            <p>Compare different sorting algorithms across data distributions — same colors as your theme.</p>
+        </div>
+
+        <div class="controls">
+      <div class="left-controls">
+        <button id="playAllBtn" class="btn"><i class="fas fa-play"></i> Play All</button>
+        <button id="regenBtn" class="btn"><i class="fas fa-sync-alt"></i> Regenerate Data</button>
+        <label style="color:#d6d6d6; margin-left:8px;">Items:
+          <select id="countSelect" style="margin-left:6px; padding:6px; border-radius:6px; background:#222; color:#fff; border:1px solid #333;">
+            <option value="10" selected>10</option> <!-- 🔥 default -->
+            <option value="20">20</option>
+            <option value="30">30</option>
+            <option value="40">40</option>
+            <option value="60">60</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="slider-container">
+        <label for="speedSlider">Speed</label>
+        <input id="speedSlider" type="range" min="1" max="100" value="55">
+        <span id="speedValue" style="color:#d6d6d6; min-width:34px; display:inline-block; text-align:center;">55</span>
+      </div>
+    </div>
+
+        <div class="visualization-grid">
+            <div class="grid-header">
+                <div>Data Type</div>
+                <div>Bubble</div>
+                <div>Bucket</div>
+                <div>Heap</div>
+                <div>Selection</div>
+                <div>Insertion</div>
+                <div>Radix</div>
+                <div>Counting</div>
+                <div>Merge</div>
+                <div>Quick</div>
+            </div>
+
+            <!-- Rows for Random, Nearly, Reversed, Few Unique -->
+            <div class="data-row" data-row="random">
+                <div class="row-label">Random</div>
+                <div class="visualization-cell" id="bubble-random"><span class="algorithm-title">Bubble Sort</span><div class="bar-container"></div><button class="cell-btn" data-algo="bubble" data-type="random">Play</button></div>
+                <div class="visualization-cell" id="bucket-random"><span class="algorithm-title">Bucket Sort</span><div class="bar-container"></div><button class="cell-btn" data-algo="bucket" data-type="random">Play</button></div>
+                <div class="visualization-cell" id="heap-random"><span class="algorithm-title">Heap Sort</span><div class="bar-container"></div><button class="cell-btn" data-algo="heap" data-type="random">Play</button></div>
+                <div class="visualization-cell" id="selection-random"><span class="algorithm-title">Selection Sort</span><div class="bar-container"></div><button class="cell-btn" data-algo="selection" data-type="random">Play</button></div>
+                <div class="visualization-cell" id="insertion-random"><span class="algorithm-title">Insertion Sort</span><div class="bar-container"></div><button class="cell-btn" data-algo="insertion" data-type="random">Play</button></div>
+                <div class="visualization-cell" id="radix-random"><span class="algorithm-title">Radix Sort</span><div class="bar-container"></div><button class="cell-btn" data-algo="radix" data-type="random">Play</button></div>
+                <div class="visualization-cell" id="counting-random"><span class="algorithm-title">Counting Sort</span><div class="bar-container"></div><button class="cell-btn" data-algo="counting" data-type="random">Play</button></div>
+                <div class="visualization-cell" id="merge-random"><span class="algorithm-title">Merge Sort</span><div class="bar-container"></div><button class="cell-btn" data-algo="merge" data-type="random">Play</button></div>
+                <div class="visualization-cell" id="quick-random"><span class="algorithm-title">Quick Sort</span><div class="bar-container"></div><button class="cell-btn" data-algo="quick" data-type="random">Play</button></div>
+            </div>
+
+            <div class="data-row" data-row="nearly">
+                <div class="row-label">Nearly Sorted</div>
+                <div class="visualization-cell" id="bubble-nearly"><span class="algorithm-title">Bubble Sort</span><div class="bar-container"></div><button class="cell-btn" data-algo="bubble" data-type="nearly">Play</button></div>
+                <div class="visualization-cell" id="bucket-nearly"><span class="algorithm-title">Bucket Sort</span><div class="bar-container"></div><button class="cell-btn" data-algo="bucket" data-type="nearly">Play</button></div>
+                <div class="visualization-cell" id="heap-nearly"><span class="algorithm-title">Heap Sort</span><div class="bar-container"></div><button class="cell-btn" data-algo="heap" data-type="nearly">Play</button></div>
+                <div class="visualization-cell" id="selection-nearly"><span class="algorithm-title">Selection Sort</span><div class="bar-container"></div><button class="cell-btn" data-algo="selection" data-type="nearly">Play</button></div>
+                <div class="visualization-cell" id="insertion-nearly"><span class="algorithm-title">Insertion Sort</span><div class="bar-container"></div><button class="cell-btn" data-algo="insertion" data-type="nearly">Play</button></div>
+                <div class="visualization-cell" id="radix-nearly"><span class="algorithm-title">Radix Sort</span><div class="bar-container"></div><button class="cell-btn" data-algo="radix" data-type="nearly">Play</button></div>
+                <div class="visualization-cell" id="counting-nearly"><span class="algorithm-title">Counting Sort</span><div class="bar-container"></div><button class="cell-btn" data-algo="counting" data-type="nearly">Play</button></div>
+                <div class="visualization-cell" id="merge-nearly"><span class="algorithm-title">Merge Sort</span><div class="bar-container"></div><button class="cell-btn" data-algo="merge" data-type="nearly">Play</button></div>
+                <div class="visualization-cell" id="quick-nearly"><span class="algorithm-title">Quick Sort</span><div class="bar-container"></div><button class="cell-btn" data-algo="quick" data-type="nearly">Play</button></div>
+            </div>
+
+            <div class="data-row" data-row="reversed">
+                <div class="row-label">Reversed</div>
+                <div class="visualization-cell" id="bubble-reversed"><span class="algorithm-title">Bubble Sort</span><div class="bar-container"></div><button class="cell-btn" data-algo="bubble" data-type="reversed">Play</button></div>
+                <div class="visualization-cell" id="bucket-reversed"><span class="algorithm-title">Bucket Sort</span><div class="bar-container"></div><button class="cell-btn" data-algo="bucket" data-type="reversed">Play</button></div>
+                <div class="visualization-cell" id="heap-reversed"><span class="algorithm-title">Heap Sort</span><div class="bar-container"></div><button class="cell-btn" data-algo="heap" data-type="reversed">Play</button></div>
+                <div class="visualization-cell" id="selection-reversed"><span class="algorithm-title">Selection Sort</span><div class="bar-container"></div><button class="cell-btn" data-algo="selection" data-type="reversed">Play</button></div>
+                <div class="visualization-cell" id="insertion-reversed"><span class="algorithm-title">Insertion Sort</span><div class="bar-container"></div><button class="cell-btn" data-algo="insertion" data-type="reversed">Play</button></div>
+                <div class="visualization-cell" id="radix-reversed"><span class="algorithm-title">Radix Sort</span><div class="bar-container"></div><button class="cell-btn" data-algo="radix" data-type="reversed">Play</button></div>
+                <div class="visualization-cell" id="counting-reversed"><span class="algorithm-title">Counting Sort</span><div class="bar-container"></div><button class="cell-btn" data-algo="counting" data-type="reversed">Play</button></div>
+                <div class="visualization-cell" id="merge-reversed"><span class="algorithm-title">Merge Sort</span><div class="bar-container"></div><button class="cell-btn" data-algo="merge" data-type="reversed">Play</button></div>
+                <div class="visualization-cell" id="quick-reversed"><span class="algorithm-title">Quick Sort</span><div class="bar-container"></div><button class="cell-btn" data-algo="quick" data-type="reversed">Play</button></div>
+            </div>
+
+            <div class="data-row" data-row="few">
+                <div class="row-label">Few Unique</div>
+                <div class="visualization-cell" id="bubble-few"><span class="algorithm-title">Bubble Sort</span><div class="bar-container"></div><button class="cell-btn" data-algo="bubble" data-type="few">Play</button></div>
+                <div class="visualization-cell" id="bucket-few"><span class="algorithm-title">Bucket Sort</span><div class="bar-container"></div><button class="cell-btn" data-algo="bucket" data-type="few">Play</button></div>
+                <div class="visualization-cell" id="heap-few"><span class="algorithm-title">Heap Sort</span><div class="bar-container"></div><button class="cell-btn" data-algo="heap" data-type="few">Play</button></div>
+                <div class="visualization-cell" id="selection-few"><span class="algorithm-title">Selection Sort</span><div class="bar-container"></div><button class="cell-btn" data-algo="selection" data-type="few">Play</button></div>
+                <div class="visualization-cell" id="insertion-few"><span class="algorithm-title">Insertion Sort</span><div class="bar-container"></div><button class="cell-btn" data-algo="insertion" data-type="few">Play</button></div>
+                <div class="visualization-cell" id="radix-few"><span class="algorithm-title">Radix Sort</span><div class="bar-container"></div><button class="cell-btn" data-algo="radix" data-type="few">Play</button></div>
+                <div class="visualization-cell" id="counting-few"><span class="algorithm-title">Counting Sort</span><div class="bar-container"></div><button class="cell-btn" data-algo="counting" data-type="few">Play</button></div>
+                <div class="visualization-cell" id="merge-few"><span class="algorithm-title">Merge Sort</span><div class="bar-container"></div><button class="cell-btn" data-algo="merge" data-type="few">Play</button></div>
+                <div class="visualization-cell" id="quick-few"><span class="algorithm-title">Quick Sort</span><div class="bar-container"></div><button class="cell-btn" data-algo="quick" data-type="few">Play</button></div>
+            </div>
+        </div>
+
+        <div class="legend">
+            <div class="legend-item"><div class="legend-color legend-comparing"></div>Comparing</div>
+            <div class="legend-item"><div class="legend-color legend-swapping"></div>Swapping</div>
+            <div class="legend-item"><div class="legend-color legend-sorted"></div>Sorted</div>
+        </div>
+    </div>
+
+    <script>
+        /* -------------------------
+           Configuration & state
+        ------------------------- */
+        let BAR_COUNT = parseInt(document.getElementById('countSelect').value, 10) || 10; // 🔥 default 10
+
+        const DATA_TYPES = ['random', 'nearly', 'reversed', 'few'];
+        const ALGORITHMS = ['bubble','bucket','heap','selection','insertion','radix','counting','merge','quick'];
+
+        // base datasets per data-type (so algorithms in same row get same initial data)
+        let baseDatasets = {};
+
+        // per-cell running flags
+        const cellRunning = {}; // key = `${algo}-${type}` => boolean
+
+        // UI elements
+        const speedSlider = document.getElementById('speedSlider');
+        const speedValue = document.getElementById('speedValue');
+        const playAllBtn = document.getElementById('playAllBtn');
+        const regenBtn = document.getElementById('regenBtn');
+        const countSelect = document.getElementById('countSelect');
+
+        // helper to compute delay (ms) from slider (1..100)
+        function computeDelayFromSpeed(val) {
+            // higher slider value => faster => smaller delay
+            // map 1 -> ~500ms, 100 -> ~6ms (clamped)
+            const speed = Number(val);
+            let delay = Math.round(520 - speed * 4.8); // linear mapping
+            if (delay < 6) delay = 6;
+            return delay;
+        }
+
+        // sleep
+        function sleep(ms) { return new Promise(res => setTimeout(res, ms)); }
+
+        /* -------------------------
+           Data generation functions
+        ------------------------- */
+        function generateRandomData(n) {
+            const arr = [];
+            for (let i = 0; i < n; i++) arr.push(Math.random());
+            return arr;
+        }
+
+        function generateNearlySortedData(n) {
+            const arr = [];
+            for (let i = 0; i < n; i++) arr.push(i / n);
+            // swap a few pairs
+            const swaps = Math.max(1, Math.floor(n / 6));
+            for (let k = 0; k < swaps; k++) {
+                const i = Math.floor(Math.random() * n);
+                const j = Math.floor(Math.random() * n);
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        function generateReversedData(n) {
+            const arr = [];
+            for (let i = 0; i < n; i++) arr.push(1 - i / n);
+            return arr;
+        }
+
+        function generateFewUniqueData(n) {
+            const uniqueValues = [0.15, 0.3, 0.5, 0.7, 0.9];
+            const arr = [];
+            for (let i = 0; i < n; i++) arr.push(uniqueValues[Math.floor(Math.random() * uniqueValues.length)]);
+            return arr;
+        }
+
+        function makeIntDatasetFromFloat(floatArr, maxVal=100) {
+            return floatArr.map(v => Math.round(v * maxVal));
+        }
+
+        /* -------------------------
+           DOM helpers
+        ------------------------- */
+        function setBarsForCell(cellId, values, isInteger=false, maxInt=100) {
+            const cell = document.getElementById(cellId);
+            if (!cell) return;
+            const container = cell.querySelector('.bar-container');
+            container.innerHTML = '';
+            const n = values.length;
+            // create bars
+            for (let i = 0; i < n; i++) {
+                const b = document.createElement('div');
+                b.className = 'bar';
+                // convert value to percentage height
+                const heightPct = isInteger ? (values[i] / (maxInt || 100)) * 100 : values[i] * 100;
+                b.style.height = `${heightPct}%`;
+                container.appendChild(b);
+            }
+        }
+
+        function getBarHeightsAsFloats(cellId, maxInt=100, isInteger=false) {
+            const cell = document.getElementById(cellId);
+            const bars = Array.from(cell.querySelectorAll('.bar'));
+            return bars.map(b => {
+                const h = parseFloat(b.style.height || '0');
+                return isInteger ? Math.round(h / 100 * maxInt) : h / 100;
+            });
+        }
+
+        function markAllBarsSorted(cellId) {
+            const bars = document.getElementById(cellId).querySelectorAll('.bar');
+            bars.forEach(b => b.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--sorted-color') || '#000');
+            // set explicit color
+            bars.forEach(b => b.style.backgroundColor = 'var(--sorted-color)');
+        }
+
+        /* -------------------------
+           Sorting algorithms - produce "moves" arrays
+           Each move: {type: 'compare'|'swap'|'overwrite'|'mark', indices: [i,j], value}
+        ------------------------- */
+
+        // bubble sort
+        function bubbleSortMoves(arr) {
+            const a = arr.slice();
+            const moves = [];
+            const n = a.length;
+            for (let i=0;i<n-1;i++){
+                let swapped=false;
+                for (let j=0;j<n-1-i;j++){
+                    moves.push({type:'compare', indices:[j,j+1]});
+                    if (a[j] > a[j+1]) {
+                        moves.push({type:'swap', indices:[j,j+1]});
+                        [a[j], a[j+1]] = [a[j+1], a[j]];
+                        swapped=true;
+                    }
+                }
+                if (!swapped) break;
+            }
+            moves.push({type:'mark'}); // mark sorted at the end
+            return moves;
+        }
+
+        // selection sort
+        function selectionSortMoves(arr) {
+            const a = arr.slice();
+            const moves = [];
+            const n = a.length;
+            for (let i=0;i<n-1;i++){
+                let minIdx = i;
+                for (let j=i+1;j<n;j++){
+                    moves.push({type:'compare', indices:[minIdx,j]});
+                    if (a[j] < a[minIdx]) minIdx = j;
+                }
+                if (minIdx !== i) {
+                    moves.push({type:'swap', indices:[i,minIdx]});
+                    [a[i], a[minIdx]] = [a[minIdx], a[i]];
+                }
+            }
+            moves.push({type:'mark'});
+            return moves;
+        }
+
+        // insertion sort
+        function insertionSortMoves(arr) {
+            const a = arr.slice();
+            const moves = [];
+            const n = a.length;
+            for (let i=1;i<n;i++){
+                let key = a[i];
+                let j = i-1;
+                while(j>=0){
+                    moves.push({type:'compare', indices:[j,i]});
+                    if (a[j] > key) {
+                        moves.push({type:'overwrite', indices:[j+1], value: a[j]});
+                        a[j+1] = a[j];
+                        j--;
+                    } else break;
+                }
+                moves.push({type:'overwrite', indices:[j+1], value:key});
+                a[j+1] = key;
+            }
+            moves.push({type:'mark'});
+            return moves;
+        }
+
+        // merge sort (overwrite-based)
+        function mergeSortMoves(arr) {
+            const a = arr.slice();
+            const moves = [];
+
+            function merge(l, m, r) {
+                const left = a.slice(l, m+1);
+                const right = a.slice(m+1, r+1);
+                let i = 0, j = 0, k = l;
+                while(i < left.length && j < right.length) {
+                    moves.push({type:'compare', indices:[l + i, m + 1 + j]});
+                    if (left[i] <= right[j]) {
+                        moves.push({type:'overwrite', indices:[k], value:left[i]});
+                        a[k++] = left[i++];
+                    } else {
+                        moves.push({type:'overwrite', indices:[k], value:right[j]});
+                        a[k++] = right[j++];
+                    }
+                }
+                while(i < left.length) {
+                    moves.push({type:'overwrite', indices:[k], value:left[i]});
+                    a[k++] = left[i++];
+                }
+                while(j < right.length) {
+                    moves.push({type:'overwrite', indices:[k], value:right[j]});
+                    a[k++] = right[j++];
+                }
+            }
+
+            function ms(l, r) {
+                if (l >= r) return;
+                const m = Math.floor((l + r) / 2);
+                ms(l, m);
+                ms(m+1, r);
+                merge(l, m, r);
+            }
+
+            ms(0, a.length - 1);
+            moves.push({type:'mark'});
+            return moves;
+        }
+
+        // quick sort (Lomuto) - swap based
+        function quickSortMoves(arr) {
+            const a = arr.slice();
+            const moves = [];
+
+            function partition(lo, hi) {
+                let pivot = a[hi];
+                let i = lo;
+                for (let j = lo; j < hi; j++) {
+                    moves.push({type:'compare', indices:[j, hi]});
+                    if (a[j] < pivot) {
+                        moves.push({type:'swap', indices:[i, j]});
+                        [a[i], a[j]] = [a[j], a[i]];
+                        i++;
+                    }
+                }
+                moves.push({type:'swap', indices:[i, hi]});
+                [a[i], a[hi]] = [a[hi], a[i]];
+                return i;
+            }
+
+            function qs(lo, hi) {
+                if (lo >= hi) return;
+                const p = partition(lo, hi);
+                qs(lo, p-1);
+                qs(p+1, hi);
+            }
+
+            qs(0, a.length - 1);
+            moves.push({type:'mark'});
+            return moves;
+        }
+
+        // heap sort
+        function heapSortMoves(arr) {
+            const a = arr.slice();
+            const moves = [];
+            const n = a.length;
+
+            function heapify(n, i) {
+                let largest = i;
+                let l = 2*i + 1;
+                let r = 2*i + 2;
+                if (l < n) {
+                    moves.push({type:'compare', indices:[l, largest]});
+                    if (a[l] > a[largest]) largest = l;
+                }
+                if (r < n) {
+                    moves.push({type:'compare', indices:[r, largest]});
+                    if (a[r] > a[largest]) largest = r;
+                }
+                if (largest !== i) {
+                    moves.push({type:'swap', indices:[i, largest]});
+                    [a[i], a[largest]] = [a[largest], a[i]];
+                    heapify(n, largest);
+                }
+            }
+
+            // build heap
+            for (let i = Math.floor(n/2) - 1; i >= 0; i--) heapify(n, i);
+            // extract
+            for (let i = n-1; i > 0; i--) {
+                moves.push({type:'swap', indices:[0,i]});
+                [a[0], a[i]] = [a[i], a[0]];
+                heapify(i, 0);
+            }
+            moves.push({type:'mark'});
+            return moves;
+        }
+
+        // bucket sort - for floats (0..1)
+        function bucketSortMoves(arr) {
+            const a = arr.slice();
+            const n = a.length;
+            const moves = [];
+            // create buckets
+            const buckets = Array.from({length: Math.max(5, Math.floor(n/5))}, () => []);
+            for (let i = 0; i < n; i++) {
+                const idx = Math.min(buckets.length - 1, Math.floor(a[i] * buckets.length));
+                buckets[idx].push(a[i]);
+            }
+            // sort buckets (using simple sort) and record overwrites
+            let k = 0;
+            for (let b = 0; b < buckets.length; b++) {
+                buckets[b].sort((x,y)=>x-y);
+                for (let v = 0; v < buckets[b].length; v++) {
+                    moves.push({type:'overwrite', indices:[k], value: buckets[b][v]});
+                    a[k] = buckets[b][v];
+                    k++;
+                }
+            }
+            moves.push({type:'mark'});
+            return moves;
+        }
+
+        // counting sort for integer arrays (non-negative)
+        function countingSortMoves(intArr, maxVal=100) {
+            const a = intArr.slice();
+            const n = a.length;
+            const moves = [];
+            const maxV = Math.max(maxVal, ...a);
+            const count = new Array(maxV + 1).fill(0);
+            for (let i = 0; i < n; i++) {
+                count[a[i]]++;
+            }
+            // prefix sums: then overwrite a
+            let idx = 0;
+            for (let val = 0; val <= maxV; val++) {
+                while (count[val] > 0) {
+                    moves.push({type:'overwrite', indices:[idx], value: val});
+                    idx++;
+                    count[val]--;
+                }
+            }
+            moves.push({type:'mark'});
+            return moves;
+        }
+
+        // radix sort for integers (base 10)
+        function radixSortMoves(intArr) {
+            const a = intArr.slice();
+            const moves = [];
+            const n = a.length;
+            const maxNum = Math.max(...a);
+            let exp = 1;
+            while (Math.floor(maxNum / exp) > 0) {
+                // counting sort by digit
+                const output = new Array(n).fill(0);
+                const count = new Array(10).fill(0);
+                for (let i = 0; i < n; i++) {
+                    const digit = Math.floor((a[i] / exp) % 10);
+                    count[digit]++;
+                }
+                for (let i = 1; i < 10; i++) count[i] += count[i - 1];
+                for (let i = n - 1; i >= 0; i--) {
+                    const digit = Math.floor((a[i] / exp) % 10);
+                    output[count[digit] - 1] = a[i];
+                    count[digit]--;
+                }
+                // overwrite a with output and produce moves
+                for (let i = 0; i < n; i++) {
+                    moves.push({type:'overwrite', indices:[i], value: output[i]});
+                    a[i] = output[i];
+                }
+                exp *= 10;
+            }
+            moves.push({type:'mark'});
+            return moves;
+        }
+
+        /* -------------------------
+           Animate moves for a single cell
+        ------------------------- */
+        async function animateMovesForCell(cellId, moves, delayMs, options={isInteger:false, maxInt:100}) {
+            if (!moves || moves.length === 0) {
+                markAllBarsSorted(cellId);
+                return;
+            }
+            const cell = document.getElementById(cellId);
+            if (!cell) return;
+            const bars = Array.from(cell.querySelectorAll('.bar'));
+            const n = bars.length;
+            const colorCompare = getComputedStyle(document.documentElement).getPropertyValue('--compare-color') || '#2b6eff';
+            const colorSwap = getComputedStyle(document.documentElement).getPropertyValue('--swap-color') || '#e03a3a';
+            const colorSorted = getComputedStyle(document.documentElement).getPropertyValue('--sorted-color') || '#000';
+
+            // mark running
+            cellRunning[cellId] = true;
+            // disable cell button
+            const btn = cell.querySelector('.cell-btn');
+            if (btn) btn.disabled = true;
+
+            for (let k = 0; k < moves.length; k++) {
+                const mv = moves[k];
+                if (!cellRunning[cellId]) break; // allow cancellation in future (not used now)
+
+                if (mv.type === 'compare') {
+                    const [i,j] = mv.indices;
+                    if (i < n) bars[i].style.backgroundColor = colorCompare;
+                    if (j < n) bars[j].style.backgroundColor = colorCompare;
+                    await sleep(Math.max(6, Math.floor(delayMs * 0.9)));
+                    // reset compare color only if not changed by swap/overwrite
+                    if (i < n) bars[i].style.backgroundColor = '';
+                    if (j < n) bars[j].style.backgroundColor = '';
+                } else if (mv.type === 'swap') {
+                    const [i,j] = mv.indices;
+                    if (i < n && j < n) {
+                        // visual swap heights
+                        const hi = bars[i].style.height;
+                        const hj = bars[j].style.height;
+                        bars[i].style.backgroundColor = colorSwap;
+                        bars[j].style.backgroundColor = colorSwap;
+                        // small await so color changes show
+                        await sleep(Math.max(6, Math.floor(delayMs * 0.35)));
+                        bars[i].style.height = hj;
+                        bars[j].style.height = hi;
+                        await sleep(Math.max(6, Math.floor(delayMs * 0.9)));
+                        bars[i].style.backgroundColor = '';
+                        bars[j].style.backgroundColor = '';
+                    }
+                } else if (mv.type === 'overwrite') {
+                    const idx = mv.indices[0];
+                    const val = mv.value;
+                    if (idx < n) {
+                        bars[idx].style.backgroundColor = colorSwap;
+                        // convert val to height percentage
+                        const heightPct = options.isInteger ? (val / options.maxInt) * 100 : (val * 100);
+                        bars[idx].style.height = `${heightPct}%`;
+                        await sleep(Math.max(6, Math.floor(delayMs * 0.9)));
+                        bars[idx].style.backgroundColor = '';
+                    }
+                } else if (mv.type === 'mark') {
+                    // mark all bars as sorted
+                    for (let b of bars) b.style.backgroundColor = colorSorted;
+                }
+            }
+
+            // ensure final sorted color
+            for (let b of bars) b.style.backgroundColor = colorSorted;
+
+            cellRunning[cellId] = false;
+            if (btn) btn.disabled = false;
+        }
+
+        /* -------------------------
+           Runner: pick algorithm, prepare moves, animate
+        ------------------------- */
+        function prepareMovesFor(algo, dataType, itemsCount) {
+            // base dataset floats (0..1)
+            const base = baseDatasets[dataType].slice(0, itemsCount);
+            // return moves and options
+            if (algo === 'bubble') return {moves: bubbleSortMoves(base), opts:{isInteger:false}};
+            if (algo === 'selection') return {moves: selectionSortMoves(base), opts:{isInteger:false}};
+            if (algo === 'insertion') return {moves: insertionSortMoves(base), opts:{isInteger:false}};
+            if (algo === 'merge') return {moves: mergeSortMoves(base), opts:{isInteger:false}};
+            if (algo === 'quick') return {moves: quickSortMoves(base), opts:{isInteger:false}};
+            if (algo === 'heap') return {moves: heapSortMoves(base), opts:{isInteger:false}};
+            if (algo === 'bucket') return {moves: bucketSortMoves(base), opts:{isInteger:false}};
+            if (algo === 'counting') {
+                const maxInt = 100;
+                const ints = makeIntDatasetFromFloat(base, maxInt);
+                return {moves: countingSortMoves(ints, maxInt), opts:{isInteger:true, maxInt}};
+            }
+            if (algo === 'radix') {
+                const maxInt = 100;
+                const ints = makeIntDatasetFromFloat(base, maxInt);
+                return {moves: radixSortMoves(ints), opts:{isInteger:true, maxInt}};
+            }
+            // fallback
+            return {moves: [], opts:{isInteger:false}};
+        }
+
+        /* -------------------------
+           Setup & event wiring
+        ------------------------- */
+        function initializeBaseDatasets() {
+            const n = BAR_COUNT;
+            baseDatasets = {
+                random: generateRandomData(n),
+                nearly: generateNearlySortedData(n),
+                reversed: generateReversedData(n),
+                few: generateFewUniqueData(n)
+            };
+        }
+
+        function populateAllCells() {
+            const n = BAR_COUNT;
+            for (let dt of DATA_TYPES) {
+                // integers for counting/radix
+                const maxInt = 100;
+                const intDataset = makeIntDatasetFromFloat(baseDatasets[dt], maxInt);
+                for (let algo of ALGORITHMS) {
+                    const id = `${algo}-${dt}`;
+                    if (algo === 'counting' || algo === 'radix') {
+                        setBarsForCell(id, intDataset, true, maxInt);
+                    } else {
+                        setBarsForCell(id, baseDatasets[dt], false);
+                    }
+                    cellRunning[id] = false;
+                }
+            }
+        }
+
+        // single cell play handler
+        async function handleCellPlay(algo, dataType) {
+            const id = `${algo}-${dataType}`;
+            if (cellRunning[id]) return;
+            // prepare fresh set of bars (so each run uses same initial base)
+            const itemsCount = BAR_COUNT;
+            // set initial bars again from base before creating moves
+            if (algo === 'counting' || algo === 'radix') {
+                const maxInt = 100;
+                setBarsForCell(id, makeIntDatasetFromFloat(baseDatasets[dataType], maxInt), true, maxInt);
+            } else {
+                setBarsForCell(id, baseDatasets[dataType], false);
+            }
+
+            const {moves, opts} = prepareMovesFor(algo, dataType, itemsCount);
+            const delay = computeDelayFromSpeed(speedSlider.value);
+            await animateMovesForCell(id, moves, delay, opts);
+        }
+
+        // Play All - runs all cells concurrently (each cell animates independently)
+        async function handlePlayAll() {
+            // disable UI controls while running
+            playAllBtn.disabled = true;
+            regenBtn.disabled = true;
+            countSelect.disabled = true;
+
+            // disable all cell buttons
+            const allCellBtns = document.querySelectorAll('.cell-btn');
+            allCellBtns.forEach(b => b.disabled = true);
+
+            const tasks = [];
+            for (let dt of DATA_TYPES) {
+                for (let algo of ALGORITHMS) {
+                    const id = `${algo}-${dt}`;
+                    // reset each cell to fresh base
+                    if (algo === 'counting' || algo === 'radix') {
+                        const maxInt = 100;
+                        setBarsForCell(id, makeIntDatasetFromFloat(baseDatasets[dt], maxInt), true, maxInt);
+                    } else {
+                        setBarsForCell(id, baseDatasets[dt], false);
+                    }
+                    const {moves, opts} = prepareMovesFor(algo, dt, BAR_COUNT);
+                    const delay = computeDelayFromSpeed(speedSlider.value);
+                    // start animation but do not await here to run in parallel
+                    const p = animateMovesForCell(id, moves, delay, opts);
+                    tasks.push(p);
+                }
+            }
+
+            // await all
+            await Promise.all(tasks);
+
+            // re-enable
+            playAllBtn.disabled = false;
+            regenBtn.disabled = false;
+            countSelect.disabled = false;
+        }
+
+        // wire cell buttons
+        function wireCellButtons() {
+            document.querySelectorAll('.cell-btn').forEach(btn => {
+                btn.addEventListener('click', async (e) => {
+                    const algo = btn.getAttribute('data-algo');
+                    const dataType = btn.getAttribute('data-type');
+                    // disable play all while single cell runs
+                    playAllBtn.disabled = true;
+                    regenBtn.disabled = true;
+                    await handleCellPlay(algo, dataType);
+                    playAllBtn.disabled = false;
+                    regenBtn.disabled = false;
+                });
+            });
+        }
+
+        // regenerate handler
+        function regenerateAndPopulate() {
+            BAR_COUNT = parseInt(countSelect.value, 10);
+            initializeBaseDatasets();
+            populateAllCells();
+        }
+
+        // initial setup
+        function init() {
+            BAR_COUNT = parseInt(countSelect.value, 10);
+            initializeBaseDatasets();
+            populateAllCells();
+            wireCellButtons();
+
+            // events
+            playAllBtn.addEventListener('click', async () => {
+                await handlePlayAll();
+            });
+            regenBtn.addEventListener('click', () => {
+                regenerateAndPopulate();
+            });
+
+            countSelect.addEventListener('change', () => {
+                regenerateAndPopulate();
+            });
+
+            speedSlider.addEventListener('input', (e) => {
+                speedValue.textContent = e.target.value;
+            });
+
+            // update speed label initial
+            speedValue.textContent = speedSlider.value;
+        }
+
+        // start
+        window.addEventListener('load', init);
+
+        // expose some helpers for debugging in console (optional)
+        window.__visualizer = {
+            regenerateAndPopulate,
+            prepareMovesFor,
+            baseDatasets
+        };
+
+    </script>
+</body>
+</html>

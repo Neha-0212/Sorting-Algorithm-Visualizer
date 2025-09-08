@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/font-awesome.css">
+    <link rel="stylesheet" href="styles/new.css">
+</head>
+<body> <!-- header start -->
+    <header class="header">
+        <div class="container">
+            <div class="row v-center">
+                <div class="header-item item-left">
+                    <div class="logo">
+                        <a href="#">Sort</a>
+                    </div>
+                </div>
+                <!-- menu start here -->
+                <div class="header-item item-center">
+                    <div class="menu-overlay">
+                    </div>
+                    <nav class="menu">
+                        <div class="mobile-menu-head">
+                            <div class="go-back"><i class="fa fa-angle-left"></i></div>
+                            <div class="current-menu-title"></div>
+                            <div class="mobile-menu-close">&times;</div>
+                        </div>
+                        <ul class="menu-main">
+                            <li>
+                                <a href="index.html">Home</a>
+                            </li>
+                            
+                           <li class="menu-item-has-children">
+                                <a href="#">Simple comparison-Based <i class="fas fa-angle-down"></i></a>
+                                <div class="sub-menu single-column-menu">
+                                    <ul>
+                                        <li><a href="bubble.html">Bubble sort</a></li>
+                                        <li><a href="insetion.html">Insertion sort	</a></li>
+                                        <li><a href="selection.html"> Selection sort</a></li>
+                                    </ul>
+                                </div>
+                           </li>
+                           <li class="menu-item-has-children">
+                                <a href="#">Efficient  comparison-Based <i class="fas fa-angle-down"></i></a>
+                                <div class="sub-menu single-column-menu">
+                                    <ul>
+                                        <li><a href="quick.html">Quick  sort</a></li>
+                                        <li><a href="merge.html">Merge  sort	</a></li>
+                                        <li><a href="heap.html">Heap  sort</a></li>
+                                    </ul>
+                                </div>
+                           </li>
+                           <li class="menu-item-has-children">
+                                <a href="#">Integer Sorting <i class="fas fa-angle-down"></i></a>
+                                <div class="sub-menu single-column-menu">
+                                    <ul>
+                                        <li><a href="radix.html">Radix  sort</a></li>
+                                        <li><a href="counting.html">Counting  sort	</a></li>
+                                    </ul>
+                                </div>
+                           </li>
+   
+                            <li class="menu-item-has-children">
+                                <a href="#">Distribution Sort <i class="fas fa-angle-down"></i></a>
+                                <div class="sub-menu single-column-menu">
+                                    <ul>
+                                        <li><a href="bucket.html">Bucket Sort</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="comparison.html">comparison Sort</a>
+                            </li><li>
+                                <a href="try.html">Your Sort</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <!-- menu end here -->
+                <div class="header-item item-right">
+                    <!-- mobile menu trigger -->
+                    <div class="mobile-menu-trigger">
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header end -->
+    <section class = "services containers">
+        <div class = "service-title">
+          <h2>Bucket Sort</h2>
+            <div>
+            <h2>Bucket Sort</h2>
+            </div>
+        </div>
+        <p class="text">Bucket Sort is a sorting algorithm that divides the input list into a fixed number of buckets, each representing a specific range of values. Elements from the list are then placed into these buckets based on their values. Once all elements are distributed, each bucket is individually sorted. </p>
+        <p class="text">This can be done using any sorting algorithm suitable for the range of values within each bucket. The sorted elements from all buckets are concatenated to produce the final sorted list. Bucket Sort is particularly effective when the input values are uniformly distributed across a range and when the number of buckets is chosen appropriately. </p>
+        <p class="text"> It may require additional memory space for storing the buckets, and its performance may degrade if the input distribution is skewed or if the number of buckets is insufficient.</p>
+        
+        <div>
+            <div id="box">
+                <section class = "services containers">
+                    <div class = "service-title">
+                      <h2>Visualizer</h2>
+                        <div>
+                        <h2>Visualizer</h2>
+                        </div>
+                    </div>
+                     <p class="text" style="display: flex; flex-direction: column;">
+                        <strong style="color: blue;"> Blue </strong> represents Selection of bar 
+                        <strong style="color: red;"> Red </strong> represents Swapping of bar 
+                    </p>
+                </section>
+                <div style="float: right; white-space: nowrap;">
+                    <button class="sort-btns" id="shuffleBtn"><i class="fas fa-random"></i></button>
+                    <button class="sort-btns" id="soundBtn"><i class="fas fa-volume-up"></i></button>
+                    <button class="sort-btns" id="sortBtn"><i class="fas fa-play"></i></button>
+                    <div class="slider-container">
+                        <div style="color: #72b626;"><strong>Elements : </strong><span id="numBarsValue"></span></div>
+                        <input type="range" value="25" min="10" max="100" name="slider" id="numBarsSlider">
+                    </div>
+                </div>
+                    
+                <div>
+                    <div id="sort-container"></div>
+                </div>        
+            </div>
+        </div>
+
+        <div class = "row">
+            <div class = "item">
+                <span><i class="fa-solid fa-brain"></i></span>
+                <h2>Algorithm</h2>
+                <p class="text">
+                    <strong>Step I : </strong> Divide the range of input values into fixed-size buckets.
+                    <br>
+                    <strong>Step II : </strong> Place each element from the input list into the appropriate bucket.
+                    <br>
+                    <strong>Step III : </strong> Sort each bucket individually using a suitable sorting algorithm.
+                    <br>
+                    <strong>Step V : </strong> Concatenate the sorted buckets to form the final sorted list.
+                </p>
+              </div>
+      
+              <div class = "item">
+                <span><i class="fa-solid fa-question"></i></span>
+                <h2>When To Use</h2>
+                <p class="text">When dealing with a small dataset.
+                <br>When simplicity of implementation is prioritized over efficiency.
+                <br>When the list is nearly sorted and few passes are needed for sorting.</p>
+                <!-- <p class="text"></p> -->
+              </div>
+      
+              <div class = "item">
+                <span><i class = "fa-solid fa-clock"></i></span>
+                <h2>Time & Space Complex</h2>
+                <div class="col">
+                    <div class="box-table">
+                        <div class="content-box">
+                            <!-- <br> -->
+                            <table>
+                                <tr>
+                                    <th>Case</th>
+                                    <th>Complexity</th>
+                                </tr>
+                                <tr>
+                                    <th>Best Case (Ω)</th>
+                                    <td>O(n+k)</td>
+                                </tr>
+                                <tr>
+                                    <th>Average Case (Θ) </th>
+                                    <td>O(n+k)</td>
+                                </tr>
+                                <tr>
+                                    <th>Worst Case (O)</th>
+                                    <td>O(n<sup>2</sup>)</td>
+                                </tr>
+                                <tr>
+                                    <th>Space</th>
+                                    <td>O(n+k)</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+              </div>
+    </section>
+    <section class="services containers">
+        <div class="service-title">
+          <h2>Code</h2>
+          <div>
+          <h2>Code</h2>
+          </div>
+      </div>
+    </section>
+        <div class="code-box">
+        <div class="code-cont">
+          <div class="code-btn">
+            <button onclick="showPythonCode()"><i class="fa-brands fa-python"></i></button>
+            <button onclick="showCCode()"><i class="fas fa-c"></i></button>
+            <button onclick="showCPPCode()"><i class="fas fa-C">Cpp</i></button>
+            <button onclick="showJSCode()"><i class="fa-brands fa-js"></i></button>
+            <button onclick="showJavaCode()"><i class="fa-brands fa-java"></i></button>
+          </div>
+          <div class="code-content">
+            <pre class="code" id="python-code" style="display:block;">
+                def bucketSort(array):
+                    bucket = []
+
+                    # Create empty buckets
+                    for i in range(len(array)):
+                        bucket.append([])
+
+                    # Insert elements into their respective buckets
+                    for j in array:
+                        index_b = int(10 * j)
+                        bucket[index_b].append(j)
+
+                    # Sort the elements of each bucket
+                    for i in range(len(array)):
+                        bucket[i] = sorted(bucket[i])
+
+                    # Get the sorted elements
+                    k = 0
+                    for i in range(len(array)):
+                        for j in range(len(bucket[i])):
+                            array[k] = bucket[i][j]
+                            k += 1
+                    return array
+            </pre>
+            <pre class="code" id="c-code" style="display:none;">
+                int max(int a[], int n) {
+                    int max = a[0];
+                    for (int i = 1; i < n; i++) {
+                      if (a[i] > max) {
+                        max = a[i];
+                      }
+                    }
+                    return max;
+                  }
+                  
+                  // Function to sort an array using bucket sort
+                  void bucketSort(int a[], int n) {
+                    int max = max(a, n); // Find the maximum element in the array
+                    int buckets[max + 1]; // Create an array of buckets
+                  
+                    // Initialize all buckets to empty
+                    for (int i = 0; i <= max; i++) {
+                      buckets[i] = 0;
+                    }
+                  
+                    // Distribute the elements of the array into buckets
+                    for (int i = 0; i < n; i++) {
+                      buckets[a[i]]++;
+                    }
+                  
+                    // Sort the elements in each bucket
+                    for (int i = 0; i <= max; i++) {
+                      while (buckets[i] > 0) {
+                        printf("%d ", i);
+                        buckets[i]--;
+                      }
+                    }
+                  }
+            </pre>
+            <pre class="code" id="cpp-code" style="display:none;">
+                    using namespace std;
+                    
+                    // Function to perform bucket sort
+                    void bucketSort(vector<float>& arr) {
+                        int n = arr.size();
+                        
+                        // Create empty buckets
+                        vector<vector<float>> buckets(n);
+                        
+                        // Put array elements in different buckets
+                        for (int i = 0; i < n; i++) {
+                            int bucketIndex = n * arr[i];
+                            buckets[bucketIndex].push_back(arr[i]);
+                        }
+                        
+                        // Sort individual buckets
+                        for (int i = 0; i < n; i++) {
+                            sort(buckets[i].begin(), buckets[i].end());
+                        }
+                        
+                        // Concatenate all buckets into arr[]
+                        int index = 0;
+                        for (int i = 0; i < n; i++) {
+                            for (int j = 0; j < buckets[i].size(); j++) {
+                                arr[index++] = buckets[i][j];
+                            }
+                        }
+                    }                 
+            </pre>
+            <pre class="code" id="js-code">
+                // Function to perform bucket sort
+                function bucketSort(arr) {
+                    const n = arr.length;
+                
+                    // Create empty buckets
+                    const buckets = new Array(n);
+                    for (let i = 0; i < n; i++) {
+                        buckets[i] = [];
+                    }
+                
+                    // Put array elements in different buckets
+                    for (let i = 0; i < n; i++) {
+                        const bucketIndex = Math.floor(n * arr[i]);
+                        buckets[bucketIndex].push(arr[i]);
+                    }
+                
+                    // Sort individual buckets
+                    for (let i = 0; i < n; i++) {
+                        buckets[i].sort((a, b) => a - b);
+                    }
+                
+                    // Concatenate all buckets into arr[]
+                    let index = 0;
+                    for (let i = 0; i < n; i++) {
+                        for (const value of buckets[i]) {
+                            arr[index++] = value;
+                        }
+                    }
+                }
+            </pre>
+            <pre class="code" id="java-code" style="display:none;">
+                public class BucketSort {
+
+                    // Function to perform bucket sort for integer values
+                    public static void bucketSort(int[] arr) {
+                        int n = arr.length;
+
+                        // Determine maximum and minimum values in the array
+                        int maxVal = Integer.MIN_VALUE;
+                        int minVal = Integer.MAX_VALUE;
+                        for (int num : arr) {
+                            maxVal = Math.max(maxVal, num);
+                            minVal = Math.min(minVal, num);
+                        }
+
+                        // Calculate bucket size
+                        int bucketSize = (maxVal - minVal) / n + 1;
+
+                        // Create empty buckets
+                        List<Integer>[] buckets = new List[n];
+                        for (int i = 0; i < n; i++) {
+                            buckets[i] = new ArrayList<>();
+                        }
+
+                        // Put array elements in different buckets
+                        for (int i = 0; i < n; i++) {
+                            int bucketIndex = (arr[i] - minVal) / bucketSize;
+                            buckets[bucketIndex].add(arr[i]);
+                        }
+
+                        // Sort individual buckets
+                        for (int i = 0; i < n; i++) {
+                            Collections.sort(buckets[i]);
+                        }
+
+                        // Concatenate all buckets into arr[]
+                        int index = 0;
+                        for (int i = 0; i < n; i++) {
+                            for (int value : buckets[i]) {
+                                arr[index++] = value;
+                            }
+                        }
+                    }
+                }
+        </pre>
+          </div>
+        </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <h3>Contact Me</h3>
+                <p>Email:nehaakanaki0218@gmail.com</p>
+                <p>Phone: +91 7414976087</p>
+            </div>
+            <div class="footer-content">
+                <h3>View To Know More</h3>
+                <ul class="list">
+                    <li><a href=""><i class="fab fa-linkedin"></i></a></li>
+                    <li><a href=""><i class="fab fa-facebook"></i></a></li>
+                    <li><a href=""><i class="fab fa-github"></i></a></li>
+                    <li><a href=""><i class="fab fa-instagram"></i></a></li>
+                    <li><a href=""><i class="fab fa-twitter"></i></a></li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bar">
+            <p>&copy: 2024 Neha Kanaki. Learn with me.</p>
+        </div>
+    </footer>
+
+    <script src="script/bucket.js"></script>
+</body>
+</html>

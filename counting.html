@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/font-awesome.css">
+    <link rel="stylesheet" href="styles/new.css">
+</head>
+<body> <!-- header start -->
+    <header class="header">
+        <div class="container">
+            <div class="row v-center">
+                <div class="header-item item-left">
+                    <div class="logo">
+                        <a href="#">Sort</a>
+                    </div>
+                </div>
+                <!-- menu start here -->
+                <div class="header-item item-center">
+                    <div class="menu-overlay">
+                    </div>
+                    <nav class="menu">
+                        <div class="mobile-menu-head">
+                            <div class="go-back"><i class="fa fa-angle-left"></i></div>
+                            <div class="current-menu-title"></div>
+                            <div class="mobile-menu-close">&times;</div>
+                        </div>
+                        <ul class="menu-main">
+                            <li>
+                                <a href="index.html">Home</a>
+                            </li>
+                            
+                           <li class="menu-item-has-children">
+                                <a href="#">Simple comparison-Based <i class="fas fa-angle-down"></i></a>
+                                <div class="sub-menu single-column-menu">
+                                    <ul>
+                                        <li><a href="bubble.html">Bubble sort</a></li>
+                                        <li><a href="insetion.html">Insertion sort	</a></li>
+                                        <li><a href="selection.html"> Selection sort</a></li>
+                                    </ul>
+                                </div>
+                           </li>
+                           <li class="menu-item-has-children">
+                                <a href="#">Efficient  comparison-Based <i class="fas fa-angle-down"></i></a>
+                                <div class="sub-menu single-column-menu">
+                                    <ul>
+                                        <li><a href="quick.html">Quick  sort</a></li>
+                                        <li><a href="merge.html">Merge  sort	</a></li>
+                                        <li><a href="heap.html">Heap  sort</a></li>
+                                    </ul>
+                                </div>
+                           </li>
+                           <li class="menu-item-has-children">
+                                <a href="#">Integer Sorting <i class="fas fa-angle-down"></i></a>
+                                <div class="sub-menu single-column-menu">
+                                    <ul>
+                                        <li><a href="radix.html">Radix  sort</a></li>
+                                        <li><a href="counting.html">Counting  sort	</a></li>
+                                    </ul>
+                                </div>
+                           </li>
+   
+                            <li class="menu-item-has-children">
+                                <a href="#">Distribution Sort <i class="fas fa-angle-down"></i></a>
+                                <div class="sub-menu single-column-menu">
+                                    <ul>
+                                        <li><a href="bucket.html">Bucket Sort</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="comparison.html">comparison Sort</a>
+                            </li><li>
+                                <a href="try.html">Your Sort</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <!-- menu end here -->
+                <div class="header-item item-right">
+                    <!-- mobile menu trigger -->
+                    <div class="mobile-menu-trigger">
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>       
+    <!-- header end -->
+    <section class = "services containers">
+        <div class = "service-title">
+          <h2>Counting Sort</h2>
+            <div>
+            <h2>Counting Sort</h2>
+            </div>
+        </div>
+        <p class="text">Counting Sort is a sorting algorithm that efficiently sorts elements by tallying the occurrences of each unique value in the input list. It counts how many times each distinct element appears and uses this information to place the elements in sorted order. By iterating through the input list and updating a count array accordingly, Counting Sort avoids the need for comparisons between elements, which contributes to its efficiency. </p>
+        <p class="text">Once the counts are determined, the algorithm constructs the sorted output array by placing each element in its correct position based on the count array. Counting Sort's linear time complexity of O(n + k), where n is the number of elements and k is the range of values, makes it particularly useful for datasets with a limited range of values. </p>
+        <p class="text">It may require additional memory space for the count array proportional to the range of input values.</p>
+        
+        <div>
+            <div id="box">
+                <section class = "services containers">
+                    <div class = "service-title">
+                      <h2>Visualizer</h2>
+                        <div>
+                        <h2>Visualizer</h2>
+                        </div>
+                    </div>
+                    <p class="text" style="display: flex; flex-direction: column;">
+                        <strong style="color: blue;"> Blue </strong> represents Selection of bar 
+                        <strong style="color: red;"> Red </strong> represents Swapping of bar 
+                    </p>
+                </section>
+                <div style="float: right; white-space: nowrap;">
+                    <button class="sort-btns" id="shuffleBtn"><i class="fas fa-random"></i></button>
+                    <button class="sort-btns" id="soundBtn"><i class="fas fa-volume-up"></i></button>
+                    <button class="sort-btns" id="sortBtn"><i class="fas fa-play"></i></button>
+                    <div class="slider-container">
+                        <input type="range" value="25" min="10" max="100" name="slider" id="numBarsSlider">
+                        <span id="numBarsValue"></span>
+                    </div>
+                </div>
+        
+                <div style="clear: both; padding-top: 20px;">
+                    
+                <div>
+                    <div id="sort-container"></div>
+                </div>        
+            </div>
+            </div>
+        </div>
+
+        <div class = "row">
+            <div class = "item">
+                <span><i class="fa-solid fa-brain"></i></span>
+                <h2>Algorithm</h2>
+                <p class="text">
+                    <strong>Step I : </strong> Determine the range of input values and create a count array initialized with zeros.
+                    <br> 
+                    <strong>Step II : </strong> Iterate through the input list, incrementing the count of each element in the count array.
+                    <br>
+                    <strong>Step III : </strong> Modify the count array to accumulate counts, ensuring each element stores the sum of counts up to its index.
+                    <br>
+                    <strong>Step IV : </strong> Create an output array of the same size as the input list.
+                    <br>
+                    <strong>Step V : </strong> Iterate through the input list again, placing each element into its correct sorted position in the output array based on the count array. Copy the sorted elements back into the original input list.
+                </p>
+              </div>
+      
+              <div class = "item">
+                <span><i class="fa-solid fa-question"></i></span>
+                <h2>When To Use</h2>
+                <p class="text">
+                    When sorting integers within a known and relatively small range efficiently.
+                    <br>
+                    When stability in sorting order is crucial.
+                    <br>
+                    - When additional memory usage is not a major concern.
+                    
+                </p>
+              </div>
+      
+              <div class = "item">
+                <span><i class = "fa-solid fa-clock"></i></span>
+                <h2>Time & Space Complex</h2>
+                <div class="col">
+                    <div class="box-table">
+                        <div class="content-box">
+                            <!-- <br> -->
+                            <table>
+                                <tr>
+                                    <th>Case</th>
+                                    <th>Complexity</th>
+                                </tr>
+                                <tr>
+                                    <th>Best Case (Ω)</th>
+                                    <td>O(n+k)</td>
+                                </tr>
+                                <tr>
+                                    <th>Average Case (Θ) </th>
+                                    <td>O(n+k)</td>
+                                </tr>
+                                <tr>
+                                    <th>Worst Case (O)</th>
+                                    <td>O(n+k)</td>
+                                </tr>
+                                <tr>
+                                    <th>Space</th>
+                                    <td>O(n+k)</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+              </div>
+        </div>
+    </section>
+    <section class="services containers">
+        <div class="service-title">
+            <h2>Code</h2>
+            <div>
+            <h2>Code</h2>
+            </div>
+        </div>
+        <div class="code-box">
+            <div class="code-cont">
+              <div class="code-btn">
+                <button onclick="showPythonCode()"><i class="fa-brands fa-python"></i></button>
+                <button onclick="showCCode()"><i class="fas fa-c"></i></button>
+                <button onclick="showCPPCode()"><i class="fas fa-C">Cpp</i></button>
+                <button onclick="showJSCode()"><i class="fa-brands fa-js"></i></button>
+                <button onclick="showJavaCode()"><i class="fa-brands fa-java"></i></button>
+              </div>
+              <div class="code-content">
+                <pre class="code" id="python-code" style="display:block;">
+                    def countingSort(arr, maximum):
+        n = len(arr)
+    
+        # Initialize count array with 0
+        count = [0] * (maximum + 1)
+    
+        # Store count of each element in count array
+        for num in arr:
+            count[num] += 1
+    
+        # Modify count array to store actual position of elements
+        for i in range(1, maximum + 1):
+            count[i] += count[i - 1]
+    
+        # Build the output array
+        output = [0] * n
+        for num in reversed(arr):
+            output[count[num] - 1] = num
+            count[num] -= 1
+    
+        # Copy the output array to arr, so that arr now contains sorted elements
+        for i in range(n):
+            arr[i] = output[i]
+    
+                </pre>
+                <pre class="code" id="c-code" style="display:none;">
+                        
+                        // Function to perform counting sort
+                        void countingSort(int arr[], int n, int range) {
+                            int output[n]; // Output array to store sorted elements
+                            int count[range + 1]; // Count array to store count of elements
+                        
+                            // Initialize count array with 0
+                            for (int i = 0; i <= range; ++i) {
+                                count[i] = 0;
+                            }
+                        
+                            // Store count of each element in count array
+                            for (int i = 0; i < n; ++i) {
+                                ++count[arr[i]];
+                            }
+                        
+                            // Modify count array to store actual position of elements
+                            for (int i = 1; i <= range; ++i) {
+                                count[i] += count[i - 1];
+                            }
+                        
+                            // Build the output array
+                            for (int i = 0; i < n; ++i) {
+                                output[count[arr[i]] - 1] = arr[i];
+                                --count[arr[i]];
+                            }
+                        
+                            // Copy the output array to arr, so that arr now contains sorted elements
+                            for (int i = 0; i < n; ++i) {
+                                arr[i] = output[i];
+                            }
+                        }
+                </pre>
+                <pre class="code" id="cpp-code" style="display:none;">
+                        using namespace std;
+                        
+                        // Function to perform counting sort
+                        void countingSort(vector<int>& arr, int range) {
+                            int n = arr.size();
+                        
+                            // Initialize count array with 0
+                            vector<int> count(range + 1, 0);
+                        
+                            // Store count of each element in count array
+                            for (int i = 0; i < n; ++i) {
+                                ++count[arr[i]];
+                            }
+                        
+                            // Modify count array to store actual position of elements
+                            for (int i = 1; i <= range; ++i) {
+                                count[i] += count[i - 1];
+                            }
+                        
+                            // Build the output array
+                            vector<int> output(n);
+                            for (int i = n - 1; i >= 0; --i) {
+                                output[count[arr[i]] - 1] = arr[i];
+                                --count[arr[i]];
+                            }
+                        
+                            // Copy the output array to arr, so that arr now contains sorted elements
+                            for (int i = 0; i < n; ++i) {
+                                arr[i] = output[i];
+                            }
+                        }                 
+                </pre>
+                <pre class="code" id="js-code">
+                    // Function to perform counting sort
+                    function countingSort(arr, maximum) {
+                        const n = arr.length;
+    
+                        // Initialize count array with 0
+                        const count = Array(maximum + 1).fill(0);
+    
+                        // Store count of each element in count array
+                        for (let i = 0; i < n; i++) {
+                            count[arr[i]]++;
+                        }
+    
+                        // Modify count array to store actual position of elements
+                        for (let i = 1; i <= maximum; i++) {
+                            count[i] += count[i - 1];
+                        }
+    
+                        // Build the output array
+                        const output = new Array(n);
+                        for (let i = n - 1; i >= 0; i--) {
+                            output[count[arr[i]] - 1] = arr[i];
+                            count[arr[i]]--;
+                        }
+    
+                        // Copy the output array to arr, so that arr now contains sorted elements
+                        for (let i = 0; i < n; i++) {
+                            arr[i] = output[i];
+                        }
+                    }
+    
+                </pre>
+                <pre class="code" id="java-code" style="display:none;">
+                    public class CountingSort {
+    
+                        // Function to perform counting sort
+                        public static void countingSort(int[] arr, int range) {
+                            int n = arr.length;
+    
+                            // Initialize count array with 0
+                            int[] count = new int[range + 1];
+    
+                            // Store count of each element in count array
+                            for (int num : arr) {
+                                count[num]++;
+                            }
+    
+                            // Modify count array to store actual position of elements
+                            for (int i = 1; i <= range; i++) {
+                                count[i] += count[i - 1];
+                            }
+    
+                            // Build the output array
+                            int[] output = new int[n];
+                            for (int i = n - 1; i >= 0; i--) {
+                                output[count[arr[i]] - 1] = arr[i];
+                                count[arr[i]]--;
+                            }
+    
+                            // Copy the output array to arr, so that arr now contains sorted elements
+                            System.arraycopy(output, 0, arr, 0, n);
+                        }
+                    }
+    
+                </pre>
+              </div>
+            </div>
+            </div>
+    </section>
+        
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <h3>Contact Me</h3>
+                <p>Email:nehaakanaki0218@gmail.com</p>
+                <p>Phone: +91 7414976087</p>
+            </div>
+            <div class="footer-content">
+                <h3>View To Know More</h3>
+                <ul class="list">
+                    <li><a href=""><i class="fab fa-linkedin"></i></a></li>
+                    <li><a href=""><i class="fab fa-facebook"></i></a></li>
+                    <li><a href=""><i class="fab fa-github"></i></a></li>
+                    <li><a href=""><i class="fab fa-instagram"></i></a></li>
+                    <li><a href=""><i class="fab fa-twitter"></i></a></li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bar">
+            <p>&copy: 2023 your company. Learn with me.</p>
+        </div>
+    </footer>
+
+    <script src="script/counting.js"></script>
+</body>
+</html>

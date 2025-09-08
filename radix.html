@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/font-awesome.css">
+    <link rel="stylesheet" href="styles/new.css">
+</head>
+<body> <!-- header start -->
+    <header class="header">
+        <div class="container">
+            <div class="row v-center">
+                <div class="header-item item-left">
+                    <div class="logo">
+                        <a href="#">Sort</a>
+                    </div>
+                </div>
+                <!-- menu start here -->
+                <div class="header-item item-center">
+                    <div class="menu-overlay">
+                    </div>
+                    <nav class="menu">
+                        <div class="mobile-menu-head">
+                            <div class="go-back"><i class="fa fa-angle-left"></i></div>
+                            <div class="current-menu-title"></div>
+                            <div class="mobile-menu-close">&times;</div>
+                        </div>
+                        <ul class="menu-main">
+                            <li>
+                                <a href="index.html">Home</a>
+                            </li>
+                            
+                           <li class="menu-item-has-children">
+                                <a href="#">Simple comparison-Based <i class="fas fa-angle-down"></i></a>
+                                <div class="sub-menu single-column-menu">
+                                    <ul>
+                                        <li><a href="bubble.html">Bubble sort</a></li>
+                                        <li><a href="insetion.html">Insertion sort	</a></li>
+                                        <li><a href="selection.html"> Selection sort</a></li>
+                                    </ul>
+                                </div>
+                           </li>
+                           <li class="menu-item-has-children">
+                                <a href="#">Efficient  comparison-Based <i class="fas fa-angle-down"></i></a>
+                                <div class="sub-menu single-column-menu">
+                                    <ul>
+                                        <li><a href="quick.html">Quick  sort</a></li>
+                                        <li><a href="merge.html">Merge  sort	</a></li>
+                                        <li><a href="heap.html">Heap  sort</a></li>
+                                    </ul>
+                                </div>
+                           </li>
+                           <li class="menu-item-has-children">
+                                <a href="#">Integer Sorting <i class="fas fa-angle-down"></i></a>
+                                <div class="sub-menu single-column-menu">
+                                    <ul>
+                                        <li><a href="radix.html">Radix  sort</a></li>
+                                        <li><a href="counting.html">Counting  sort	</a></li>
+                                    </ul>
+                                </div>
+                           </li>
+   
+                            <li class="menu-item-has-children">
+                                <a href="#">Distribution Sort <i class="fas fa-angle-down"></i></a>
+                                <div class="sub-menu single-column-menu">
+                                    <ul>
+                                        <li><a href="bucket.html">Bucket Sort</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="comparison.html">comparison Sort</a>
+                            </li><li>
+                                <a href="try.html">Your Sort</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <!-- menu end here -->
+                <div class="header-item item-right">
+                    <!-- mobile menu trigger -->
+                    <div class="mobile-menu-trigger">
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header end -->
+    <section class = "services containers">
+        <div class = "service-title">
+          <h2>radix Sort</h2>
+            <div>
+            <h2>radix Sort</h2>
+            </div>
+        </div>
+        <p class="text">Radix Sort is a unique sorting algorithm that organizes elements based on their individual digits or characters. It processes the input list digit by digit or character by character, distributing elements into buckets according to the value of each digit or character. By iterating through the list in this manner, Radix Sort ensures that elements are sorted based on their entire numeric or lexicographic values. </p>
+        <p class="text">With a time complexity of O(nk), where n is the number of elements and k is the number of digits or characters in the largest element, Radix Sort is particularly efficient for datasets with a fixed number of digits or characters. It may require additional memory space for storing the buckets, especially when handling a wide range of values.</p>
+       
+        <div>
+            <div id="box">
+                <section class = "services containers">
+                    <div class = "service-title">
+                      <h2>Visualizer</h2>
+                        <div>
+                        <h2>Visualizer</h2>
+                        </div>
+                    </div>
+                    <p class="text" style="display: flex; flex-direction: column;">
+                        <strong style="color: blue;"> Blue </strong> represents Selection of bar 
+                        <strong style="color: red;"> Red </strong> represents Swapping of bar 
+                    </p>
+                </section>
+                <div style="float: right; white-space: nowrap;">
+                    <button class="sort-btns" id="shuffleBtn"><i class="fas fa-random"></i></button>
+                    <button class="sort-btns" id="soundBtn"><i class="fas fa-volume-up"></i></button>
+                    <button class="sort-btns" id="sortBtn"><i class="fas fa-play"></i></button>
+                    <div class="slider-container">
+                        <input type="range" value="25" min="10" max="100" name="slider" id="numBarsSlider">
+                        <span id="numBarsValue"></span>
+                    </div>
+                </div>
+        
+                <div style="clear: both; padding-top: 20px;">
+                    
+                <div>
+                    <div id="sort-container"></div>
+                </div>        
+            </div>
+        </div>
+
+        <div class = "row">
+            <div class = "item">
+                <span><i class="fa-solid fa-brain"></i></span>
+                <h2>Algorithm</h2>
+                <p class="text">
+                    <strong>Step I : </strong> Identify the maximum number of digits or characters in the input list.
+                    <br>
+                    <strong>Step II : </strong> Iterate through each digit position from least significant to most significant.
+                    <br>
+                    <strong>Step III : </strong> Distribute elements into buckets based on the value of the digit at the current position.
+                    <br>
+                    <strong>Step IV : </strong> Collect elements from buckets back into a single list.
+                    <br>
+                    <strong>Step V : </strong> Repeat distribution and collection process for each digit position, sorting the elements by their entire numeric or lexicographic values.
+                </p>
+              </div>
+      
+              <div class = "item">
+                <span><i class="fa-solid fa-question"></i></span>
+                <h2>When To Use</h2>
+                <p class="text">
+                    When sorting integers or strings with fixed lengths efficiently.
+                    <br>
+                    When sorting integers or strings with fixed lengths efficiently.
+                    <br>
+                    When maintaining stability in sorting order is necessary.
+                </p>
+                <!-- <p class="text"></p> -->
+              </div>
+      
+              <div class = "item">
+                <span><i class = "fa-solid fa-clock"></i></span>
+                <h2>Time & Space Complex</h2>
+                <div class="col">
+                    <div class="box-table">
+                        <div class="content-box">
+                            <!-- <br> -->
+                            <table>
+                                <tr>
+                                    <th>Case</th>
+                                    <th>Complexity</th>
+                                </tr>
+                                <tr>
+                                    <th>Best Case (Ω)</th>
+                                    <td>O(nk)</td>
+                                </tr>
+                                <tr>
+                                    <th>Average Case (Θ) </th>
+                                    <td>O(nk)</td>
+                                </tr>
+                                <tr>
+                                    <th>Worst Case (O)</th>
+                                    <td>O(nk)</td>
+                                </tr>
+                                <tr>
+                                    <th>Space</th>
+                                    <td>O(n+k)</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+              </div>
+    </section>
+    <section class="services containers">
+        <div class="service-title">
+            <h2>Code</h2>
+            <div>
+            <h2>Code</h2>
+            </div>
+        </div>
+    </section>
+        <div class="code-box">
+        <div class="code-cont">
+          <div class="code-btn">
+            <button onclick="showPythonCode()"><i class="fa-brands fa-python"></i></button>
+            <button onclick="showCCode()"><i class="fas fa-c"></i></button>
+            <button onclick="showCPPCode()"><i class="fas fa-C">Cpp</i></button>
+            <button onclick="showJSCode()"><i class="fa-brands fa-js"></i></button>
+            <button onclick="showJavaCode()"><i class="fa-brands fa-java"></i></button>
+          </div>
+          <div class="code-content">
+            <pre class="code" id="python-code" style="display:block;">
+            def countingSort(arr, exp):
+                n = len(arr)
+                output = [0] * n
+                count = [0] * 10
+
+                # Store count of occurrences in count[]
+                for i in range(n):
+                    index = arr[i] // exp
+                    count[index % 10] += 1
+
+                # Change count[i] so that count[i] now contains actual position of this digit in output[]
+                for i in range(1, 10):
+                    count[i] += count[i - 1]
+
+                # Build the output array
+                i = n - 1
+                while i >= 0:
+                    index = arr[i] // exp
+                    output[count[index % 10] - 1] = arr[i]
+                    count[index % 10] -= 1
+                    i -= 1
+
+                # Copy the output array to arr[], so that arr[] now contains sorted numbers according to current digit
+                for i in range(len(arr)):
+                    arr[i] = output[i]
+
+            def radixSort(arr):
+                # Find the maximum number to know number of digits
+                max_element = max(arr)
+
+                # Apply counting sort to sort elements based on place value
+                exp = 1
+                while max_element // exp > 0:
+                    countingSort(arr, exp)
+                    exp *= 10
+            </pre>
+            <pre class="code" id="c-code" style="display:none;">
+                    // Function to get the maximum value in arr[]
+                    int getMax(int arr[], int n) {
+                        int max = arr[0];
+                        for (int i = 1; i < n; i++)
+                            if (arr[i] > max)
+                                max = arr[i];
+                        return max;
+                    }
+                    
+                    // Function to count sort arr[] based on digit represented by exp
+                    void countSort(int arr[], int n, int exp) {
+                        int output[n];
+                        int count[10] = {0};
+                    
+                        // Store count of occurrences in count[]
+                        for (int i = 0; i < n; i++)
+                            count[(arr[i] / exp) % 10]++;
+                    
+                        // Change count[i] so that count[i] contains actual position of this digit in output[]
+                        for (int i = 1; i < 10; i++)
+                            count[i] += count[i - 1];
+                    
+                        // Build the output array
+                        for (int i = n - 1; i >= 0; i--) {
+                            output[count[(arr[i] / exp) % 10] - 1] = arr[i];
+                            count[(arr[i] / exp) % 10]--;
+                        }
+                    
+                        // Copy the output array to arr[], so that arr[] now contains sorted numbers according to current digit
+                        for (int i = 0; i < n; i++)
+                            arr[i] = output[i];
+                    }
+                    
+                    // Radix Sort function
+                    void radixSort(int arr[], int n) {
+                        // Find the maximum number to know number of digits
+                        int max = getMax(arr, n);
+                    
+                        // Do counting sort for every digit. Instead of passing digit number, exp is passed.
+                        // exp is 10^i where i is the current digit number
+                        for (int exp = 1; max / exp > 0; exp *= 10)
+                            countSort(arr, n, exp);
+                    }               
+            </pre>
+            <pre class="code" id="cpp-code" style="display:none;">     
+                    using namespace std;
+                    
+                    // Function to count sort arr[] based on digit represented by exp
+                    void countSort(vector<int>& arr, int exp) {
+                        int n = arr.size();
+                        vector<int> output(n);
+                        vector<int> count(10, 0);
+                    
+                        // Store count of occurrences in count[]
+                        for (int i = 0; i < n; i++)
+                            count[(arr[i] / exp) % 10]++;
+                    
+                        // Change count[i] so that count[i] contains actual position of this digit in output[]
+                        for (int i = 1; i < 10; i++)
+                            count[i] += count[i - 1];
+                    
+                        // Build the output array
+                        for (int i = n - 1; i >= 0; i--) {
+                            output[count[(arr[i] / exp) % 10] - 1] = arr[i];
+                            count[(arr[i] / exp) % 10]--;
+                        }
+                    
+                        // Copy the output array to arr[], so that arr[] now contains sorted numbers according to current digit
+                        for (int i = 0; i < n; i++)
+                            arr[i] = output[i];
+                    }
+                    
+                    // Radix Sort function
+                    void radixSort(vector<int>& arr) {
+                        // Find the maximum number to know number of digits
+                        int max = *max_element(arr.begin(), arr.end());
+                    
+                        // Do counting sort for every digit. Instead of passing digit number, exp is passed.
+                        // exp is 10^i where i is the current digit number
+                        for (int exp = 1; max / exp > 0; exp *= 10)
+                            countSort(arr, exp);
+                    }
+                    
+                    // Function to print array elements
+                    void printArray(const vector<int>& arr) {
+                        for (int num : arr) {
+                            cout << num << " ";
+                        }
+                        cout << endl;
+                    }                    
+            </pre>
+            <pre class="code" id="js-code">
+                // Function to count sort arr[] based on digit represented by exp
+                function countSort(arr, exp) {
+                    const n = arr.length;
+                    const output = new Array(n);
+                    const count = new Array(10).fill(0);
+
+                    // Store count of occurrences in count[]
+                    for (let i = 0; i < n; i++)
+                        count[Math.floor(arr[i] / exp) % 10]++;
+
+                    // Change count[i] so that count[i] contains actual position of this digit in output[]
+                    for (let i = 1; i < 10; i++)
+                        count[i] += count[i - 1];
+
+                    // Build the output array
+                    for (let i = n - 1; i >= 0; i--) {
+                        output[count[Math.floor(arr[i] / exp) % 10] - 1] = arr[i];
+                        count[Math.floor(arr[i] / exp) % 10]--;
+                    }
+
+                    // Copy the output array to arr[], so that arr[] now contains sorted numbers according to current digit
+                    for (let i = 0; i < n; i++)
+                        arr[i] = output[i];
+                }
+
+                // Radix Sort function
+                function radixSort(arr) {
+                    // Find the maximum number to know number of digits
+                    const max = Math.max(...arr);
+
+                    // Do counting sort for every digit. Instead of passing digit number, exp is passed.
+                    // exp is 10^i where i is the current digit number
+                    for (let exp = 1; Math.floor(max / exp) > 0; exp *= 10)
+                        countSort(arr, exp);
+                }
+            </pre>
+            <pre class="code" id="java-code" style="display:none;">
+                public class RadixSort {
+
+                    // Function to count sort arr[] based on digit represented by exp
+                    static void countSort(int arr[], int exp) {
+                        int n = arr.length;
+                        int output[] = new int[n];
+                        int count[] = new int[10];
+
+                        // Store count of occurrences in count[]
+                        for (int i = 0; i < n; i++)
+                            count[(arr[i] / exp) % 10]++;
+
+                        // Change count[i] so that count[i] contains actual position of this digit in output[]
+                        for (int i = 1; i < 10; i++)
+                            count[i] += count[i - 1];
+
+                        // Build the output array
+                        for (int i = n - 1; i >= 0; i--) {
+                            output[count[(arr[i] / exp) % 10] - 1] = arr[i];
+                            count[(arr[i] / exp) % 10]--;
+                        }
+
+                        // Copy the output array to arr[], so that arr[] now contains sorted numbers according to current digit
+                        System.arraycopy(output, 0, arr, 0, n);
+                    }
+
+                    // Radix Sort function
+                    static void radixSort(int arr[]) {
+                        // Find the maximum number to know number of digits
+                        int max = Arrays.stream(arr).max().getAsInt();
+
+                        // Do counting sort for every digit. Instead of passing digit number, exp is passed.
+                        // exp is 10^i where i is the current digit number
+                        for (int exp = 1; max / exp > 0; exp *= 10)
+                            countSort(arr, exp);
+                    }
+
+                    // Function to print array elements
+                    static void printArray(int arr[]) {
+                        for (int num : arr) {
+                            System.out.print(num + " ");
+                        }
+                        System.out.println();
+                    }
+                }
+            </pre>
+          </div>
+        </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <h3>Contact Me</h3>
+                <p>Email:nehaakanaki0218@gmail.com</p>
+                <p>Phone: +91 7414976087</p>
+            </div>
+            <div class="footer-content">
+                <h3>View To Know More</h3>
+                <ul class="list">
+                    <li><a href=""><i class="fab fa-linkedin"></i></a></li>
+                    <li><a href=""><i class="fab fa-facebook"></i></a></li>
+                    <li><a href=""><i class="fab fa-github"></i></a></li>
+                    <li><a href=""><i class="fab fa-instagram"></i></a></li>
+                    <li><a href=""><i class="fab fa-twitter"></i></a></li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bar">
+            <p>&copy: 2023 your company. Learn with me.</p>
+        </div>
+    </footer>
+
+    <script src="script/radix.js"></script>
+</body>
+</html>
